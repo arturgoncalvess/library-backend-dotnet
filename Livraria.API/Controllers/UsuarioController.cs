@@ -1,4 +1,5 @@
-﻿using Livraria.API.Models;
+﻿using Livraria.API.Data;
+using Livraria.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,56 +12,27 @@ namespace Livraria.API.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+        private readonly DataContext _context;
 
-        public List<Usuario> Usuarios = new List<Usuario>()
+        public UsuarioController(DataContext context)
         {
-            new Usuario()
-            {
-                Id = 1,
-                Nome = "Artur",
-                Cidade = "Fortaleza",
-                Endereco = "Rua A",
-                Email = "Artur@gmail.com"
-            },
-            new Usuario()
-            {
-                Id = 2,
-                Nome = "Art",
-                Cidade = "Fortal",
-                Endereco = "Rua B",
-                Email = "Art@gmail.com"
-            },
-            new Usuario()
-            {
-                Id = 3,
-                Nome = "Ark",
-                Cidade = "Fort",
-                Endereco = "Rua C",
-                Email = "Ark@gmail.com"
-            },
-            new Usuario()
-            {
-                Id = 5,
-                Nome = "Ana",
-                Cidade = "Fort",
-                Endereco = "Rua D",
-                Email = "Anak@gmail.com"
-            }
-        };
+            _context = context;
+        }
+
 
         [HttpGet]
 
         public IActionResult Get()
         {
-            return Ok(Usuarios);
+            return Ok(_context.Usuarios);
         }
 
         // api/usuario/byId
         [HttpGet("byId")]
         public IActionResult GetById(int id)
         {
-            var usuario = Usuarios.FirstOrDefault(u => u.Id == id);
-            if (usuario == null) return BadRequest("O usuário não foi encontrado :(");
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == id);
+            if (usuario == null) return BadRequest("O usuário não foi encontrado :( 1");
             return Ok(usuario);
         }
 
@@ -68,8 +40,8 @@ namespace Livraria.API.Controllers
         [HttpGet("byName")]
         public IActionResult GetByName(string nome)
         {
-            var usuario = Usuarios.Where(u => u.Nome.Contains(nome));
-            if (usuario == null) return BadRequest("Nenhum aluno com " + usuario + "encontrado");
+            var usuario = _context.Usuarios.Where(u => u.Nome.Contains(nome));
+            if (usuario == null) return BadRequest("Nenhum aluno com " + usuario + "encontrado 2");
             return Ok(usuario);
         }
 
@@ -77,6 +49,8 @@ namespace Livraria.API.Controllers
         [HttpPost]
         public IActionResult Post(Usuario usuario)
         {
+            _context.Add(usuario);
+            _context.SaveChanges();
             return Ok(usuario);
         }
 
@@ -84,6 +58,10 @@ namespace Livraria.API.Controllers
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, Usuario usuario)
         {
+            var usua = _context.Usuarios.FirstOrDefault(u => u.Id == id);
+            if (usuario == null) return BadRequest("O usuário não foi encontrado :( 3");
+            _context.Update(usuario);
+            _context.SaveChanges();
             return Ok(usuario);
         }
 
@@ -91,6 +69,10 @@ namespace Livraria.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Usuario usuario)
         {
+            var usua = _context.Usuarios.FirstOrDefault(u => u.Id == id);
+            if (usuario == null) return BadRequest("O usuário não foi encontrado :( 4");
+            _context.Update(usuario);
+            _context.SaveChanges();
             return Ok(usuario);
         }
 
@@ -98,6 +80,10 @@ namespace Livraria.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == id);
+            if (usuario == null) return BadRequest("O usuário não foi encontrado :( 5");
+            _context.Remove(usuario);
+            _context.SaveChanges();
             return Ok();
         }
 
