@@ -13,17 +13,22 @@ namespace Livraria.API.Data
         bool SaveChanges();
 
         // Usuários
-        Usuario[] GetAllUsuarios();
-        Usuario[] GetUsuarioById(int usuarioId);
+        User[] GetAllUsers();
+        User[] GetUserById(int userId);
 
         // Livros
-        Livro[] GetAllLivros(bool includeEditora = false);
-        Livro[] GetAllLivrosByEditoraId(int editoraId, bool includeEditora = false);
-        Livro GetLivroById(int editoraId, bool includeEditora = false);
+        Book[] GetAllBooks(bool includeEditora = false);
+        Book[] GetAllBooksByPublisherId(int publisherId, bool includePublisher = false);
+        Book GetBookById(int publisherId, bool includePublisher = false);
 
         // Editoras
-        Editora[] GetAllEditoras();
-        Editora[] GetEditoraById(int editoraId);
+        Publisher[] GetAllPublishers();
+        Publisher[] GetPublisherById(int publisherId);
 
+        // Alugueis
+        Rental[] GetAllRentals();
+        Rental[] GetAllRentalsByUserId(int userId);
+        Rental[] GetAllRentalsByBookId(int bookId);
+        Rental[] GetRentalById(int userId, int bookId);
     }
 }

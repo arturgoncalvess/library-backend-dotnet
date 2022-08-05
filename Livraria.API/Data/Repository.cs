@@ -32,91 +32,145 @@ namespace Livraria.API.Data
         }
 
         // Usuários
-        public Usuario[] GetAllUsuarios()
+        public User[] GetAllUsers()
         {
-            IQueryable<Usuario> query = _context.Usuarios;
+            IQueryable<User> query = _context.Users;
 
             query = query.AsNoTracking().OrderBy(u => u.Id);
             return query.ToArray();
         }
 
-        public Usuario[] GetUsuarioById(int usuarioId)
+        public User[] GetUserById(int userId)
         {
-            IQueryable<Usuario> query = _context.Usuarios;
+            IQueryable<User> query = _context.Users;
 
             query = query.AsNoTracking()
                 .OrderBy(u => u.Id)
-                .Where(usuario => usuario.Id == usuarioId);
+                .Where(user => user.Id == userId);
 
             return query.ToArray();
         }
 
         // Livros
-        public Livro[] GetAllLivros(bool includeEditora = false)
+        public Book[] GetAllBooks(bool includePublisher = false)
         {
-            IQueryable<Livro> query = _context.Livros;
+            IQueryable<Book> query = _context.Books;
 
-            if (includeEditora)
+            if (includePublisher)
             {
-                query = query.Include(l => l.Editora);
+                query = query.Include(b => b.Publisher);
             }
 
-            query = query.AsNoTracking().OrderBy(l => l.Id);
+            query = query.AsNoTracking().OrderBy(b => b.Id);
 
             return query.ToArray();
         }
 
-        public Livro[] GetAllLivrosByEditoraId(int editoraId, bool includeEditora = false)
+        public Book[] GetAllBooksByPublisherId(int publisherId, bool includePublisher = false)
         {
-            IQueryable<Livro> query = _context.Livros;
+            IQueryable<Book> query = _context.Books;
 
-            if (includeEditora)
+            if (includePublisher)
             {
-                query = query.Include(l => l.Editora);
+                query = query.Include(b => b.Publisher);
             }
 
             query = query.AsNoTracking()
-                .OrderBy(l => l.Id)
-                .Where(editora => editora.Id == editoraId);
+                .OrderBy(b => b.Id)
+                .Where(publisher => publisher.Id == publisherId);
 
             return query.ToArray();
         }
 
-        public Livro GetLivroById(int editoraId, bool includeEditora = false)
+        public Book GetBookById(int publisherId, bool includePublisher = false)
         {
-            IQueryable<Livro> query = _context.Livros;
+            IQueryable<Book> query = _context.Books;
 
-            if (includeEditora)
+            if (includePublisher)
             {
-                query = query.Include(l => l.Editora);
+                query = query.Include(b => b.Publisher);
             }
 
             query = query.AsNoTracking()
-                .OrderBy(l => l.Id)
-                .Where(editora => editora.Id == editoraId);
+                .OrderBy(b => b.Id)
+                .Where(publisher => publisher.Id == publisherId);
 
             return query.FirstOrDefault();
         }
 
         // Editoras
-        public Editora[] GetAllEditoras()
+        public Publisher[] GetAllPublishers()
         {
-            IQueryable<Editora> query = _context.Editoras;
+            IQueryable<Publisher> query = _context.Publishers;
 
-            query = query.AsNoTracking().OrderBy(e => e.Id);
+            query = query.AsNoTracking().OrderBy(p => p.Id);
             return query.ToArray();
         }
 
-        public Editora[] GetEditoraById(int editoraId)
+        public Publisher[] GetPublisherById(int publisherId)
         {
-            IQueryable<Editora> query = _context.Editoras;
+            IQueryable<Publisher> query = _context.Publishers;
 
             query = query.AsNoTracking()
-                .OrderBy(e => e.Id)
-                .Where(editora => editora.Id == editoraId);
+                .OrderBy(p => p.Id)
+                .Where(publisher => publisher.Id == publisherId);
 
             return query.ToArray();
         }
 
+        // Alugueis
+        public Rental[] GetAllRentals()
+        {
+            IQueryable<Rental> query = _context.Rentals;
+
+            query = query.Include(r => r.User);
+            query = query.Include(r => r.Book).ThenInclude(b => b.Publisher);
+
+            query = query.AsNoTracking().OrderBy(r => r.Id);
+
+            return query.ToArray();
+        }
+
+        public Rental[] GetAllRentalsByUserId(int userId)
+        {
+            IQueryable<Rental> query = _context.Rentals;
+
+            query = query.Include(r => r.User);
+
+            query = query.AsNoTracking()
+                .OrderBy(r => r.Id)
+                .Where(user => user.Id == userId);
+
+            return query.ToArray();
+        }
+
+        public Rental[] GetAllRentalsByBookId(int bookId)
+        {
+            IQueryable<Rental> query = _context.Rentals;
+
+            query = query.Include(r => r.Book);
+
+            query = query.AsNoTracking()
+                .OrderBy(r => r.Id)
+                .Where(book => book.Id == bookId);
+
+            return query.ToArray();
+        }
+
+        public Rental[] GetRentalById(int userId, int bookId)
+        {
+            IQueryable<Rental> query = _context.Rentals;
+
+            query = query.Include(l => l.User);
+            query = query.Include(l => l.Book);
+
+
+            query = query.AsNoTracking()
+                .OrderBy(a => a.Id)
+                .Where(usuario => usuario.Id == userId)
+                .Where(livro => livro.Id == bookId);
+
+            return query.ToArray();
+        }
     }
 }
