@@ -7,15 +7,16 @@ namespace Livraria.API.Data
     public class Repository : IRepository
     {
         private readonly DataContext _context;
-
         public Repository(DataContext context)
         {
             _context = context;
         }
+
         public void Add<T>(T entity) where T : class
         {
             _context.Add(entity);
         }
+
         public void Update<T>(T entity) where T : class
         {
             _context.Update(entity);
@@ -28,7 +29,7 @@ namespace Livraria.API.Data
 
         public bool SaveChanges()
         {
-           return (_context.SaveChanges() > 0);
+            return (_context.SaveChanges() > 0);
         }
 
         // Usuários
@@ -40,7 +41,7 @@ namespace Livraria.API.Data
             return query.ToArray();
         }
 
-        public User[] GetUserById(int userId)
+        public User GetUserById(int userId)
         {
             IQueryable<User> query = _context.Users;
 
@@ -48,7 +49,7 @@ namespace Livraria.API.Data
                 .OrderBy(u => u.Id)
                 .Where(user => user.Id == userId);
 
-            return query.ToArray();
+            return query.FirstOrDefault();
         }
 
         // Livros
@@ -107,7 +108,7 @@ namespace Livraria.API.Data
             return query.ToArray();
         }
 
-        public Publisher[] GetPublisherById(int publisherId)
+        public Publisher GetPublisherById(int publisherId)
         {
             IQueryable<Publisher> query = _context.Publishers;
 
@@ -115,7 +116,7 @@ namespace Livraria.API.Data
                 .OrderBy(p => p.Id)
                 .Where(publisher => publisher.Id == publisherId);
 
-            return query.ToArray();
+            return query.FirstOrDefault();
         }
 
         // Alugueis
@@ -157,7 +158,7 @@ namespace Livraria.API.Data
             return query.ToArray();
         }
 
-        public Rental[] GetRentalById(int userId, int bookId)
+        public Rental GetRentalById(int userId, int bookId)
         {
             IQueryable<Rental> query = _context.Rentals;
 
@@ -170,7 +171,7 @@ namespace Livraria.API.Data
                 .Where(usuario => usuario.Id == userId)
                 .Where(livro => livro.Id == bookId);
 
-            return query.ToArray();
+            return query.FirstOrDefault();
         }
     }
 }

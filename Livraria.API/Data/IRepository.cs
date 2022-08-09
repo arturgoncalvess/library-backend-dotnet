@@ -14,7 +14,7 @@ namespace Livraria.API.Data
 
         // Usuários
         User[] GetAllUsers();
-        User[] GetUserById(int userId);
+        User GetUserById(int userId);
 
         // Livros
         Book[] GetAllBooks(bool includeEditora = false);
@@ -23,12 +23,12 @@ namespace Livraria.API.Data
 
         // Editoras
         Publisher[] GetAllPublishers();
-        Publisher[] GetPublisherById(int publisherId);
+        Publisher GetPublisherById(int publisherId);
 
         // Alugueis
         Rental[] GetAllRentals();
         Rental[] GetAllRentalsByUserId(int userId);
         Rental[] GetAllRentalsByBookId(int bookId);
-        Rental[] GetRentalById(int userId, int bookId);
+        Rental GetRentalById(int userId, int bookId);
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Livraria.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220805141346_init")]
+    [Migration("20220809171906_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
