@@ -9,20 +9,32 @@ using System.Collections.Generic;
 
 namespace Livraria.API.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// ApiController
+    /// </summary>
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[Controller]")]
     public class UserController : ControllerBase
     {
         private readonly IRepository _repo;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Método UserController para IRepository e IMapper
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="mapper"></param>
         public UserController(IRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
-
-        // GET api/user
+         
+        /// <summary>
+        /// Construtor UserController de IRepository e IMapper
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -30,7 +42,11 @@ namespace Livraria.API.Controllers
             return Ok(_mapper.Map<IEnumerable<UserDto>>(users));
         }
 
-        // GET: api/user/byId
+        /// <summary>
+        /// Método responsável por retornar apenas um usuário por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -41,7 +57,11 @@ namespace Livraria.API.Controllers
             return Ok(userDto);
         }
 
-        // POST api/user
+        /// <summary>
+        /// Método responsável em adicionar um novo usuário
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(UserDto model)
         {
@@ -56,7 +76,12 @@ namespace Livraria.API.Controllers
             return BadRequest("Unable to register user :(");
         }
 
-        // PUT api/user/
+        /// <summary>
+        /// Método responsável em atualizar um usuário por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Put(int id, UserDto model)
         {
@@ -74,7 +99,11 @@ namespace Livraria.API.Controllers
             return BadRequest("Could not update user :(");
         }
 
-        // DELETE api/user/
+        /// <summary>
+        /// Método responsável em deletar um usuário por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

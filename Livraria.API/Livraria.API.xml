@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Livraria.API</name>
+    </assembly>
+    <members>
+        <member name="T:Livraria.API.Controllers.BookController">
+            <summary>
+            ApiController
+            </summary>
+        </member>
+        <member name="M:Livraria.API.Controllers.BookController.#ctor(Livraria.API.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            Construtor UserController de IRepository e IMapper
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:Livraria.API.Controllers.BookController.Get">
+            <summary>
+            Método responsável para retornar todos os livros
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.BookController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar apenas um livro por meio do ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.BookController.Post(Livraria.API.Dtos.BookDto)">
+            <summary>
+            Método responsável em adicionar um novo livro
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.BookController.Put(System.Int32,Livraria.API.Dtos.BookDto)">
+            <summary>
+            Método responsável em atualizar um livro por meio do ID
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.BookController.Delete(System.Int32)">
+            <summary>
+            Método responsável em deletar um livro por meio do ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Livraria.API.Controllers.PublisherController">
+            <summary>
+            ApiController
+            </summary>
+        </member>
+        <member name="M:Livraria.API.Controllers.PublisherController.#ctor(Livraria.API.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            Construtor UserController de IRepository e IMapper
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:Livraria.API.Controllers.PublisherController.Get">
+            <summary>
+            Método responsável para retornar todas as editoras
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.PublisherController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar apenas uma editora por meio do ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.PublisherController.Post(Livraria.API.Dtos.PublisherDto)">
+            <summary>
+            Método responsável em adicionar uma nova editora
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.PublisherController.Put(System.Int32,Livraria.API.Dtos.PublisherDto)">
+            <summary>
+            Método responsável em atualizar uma editora por meio do ID
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.PublisherController.Delete(System.Int32)">
+            <summary>
+            Método responsável em deletar uma editora por meio do ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Livraria.API.Controllers.RentalController">
+            <summary>
+            ApiController
+            </summary>
+        </member>
+        <member name="M:Livraria.API.Controllers.RentalController.#ctor(Livraria.API.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            Construtor UserController de IRepository e IMapper
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:Livraria.API.Controllers.RentalController.Get">
+            <summary>
+            Método responsável para retornar todos os alugueis
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.RentalController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar apenas um usuário por meio do ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.RentalController.Post(Livraria.API.Dtos.RentalDto)">
+            <summary>
+            Método responsável em adicionar um novo aluguel
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.RentalController.Put(System.Int32,Livraria.API.Dtos.RentalDto)">
+            <summary>
+            Método responsável em atualizar um aluguel por meio do ID
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.RentalController.Delete(System.Int32)">
+            <summary>
+            Método responsável em deletar um aluguel por meio do ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Livraria.API.Controllers.UserController">
+            <summary>
+            ApiController
+            </summary>
+        </member>
+        <member name="M:Livraria.API.Controllers.UserController.#ctor(Livraria.API.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            Método UserController para IRepository e IMapper
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:Livraria.API.Controllers.UserController.Get">
+            <summary>
+            Construtor UserController de IRepository e IMapper
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.UserController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar apenas um usuário por meio do ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.UserController.Post(Livraria.API.Dtos.UserDto)">
+            <summary>
+            Método responsável em adicionar um novo usuário
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.UserController.Put(System.Int32,Livraria.API.Dtos.UserDto)">
+            <summary>
+            Método responsável em atualizar um usuário por meio do ID
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Livraria.API.Controllers.UserController.Delete(System.Int32)">
+            <summary>
+            Método responsável em deletar um usuário por meio do ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

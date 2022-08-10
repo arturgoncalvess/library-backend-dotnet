@@ -9,20 +9,32 @@ using System.Collections.Generic;
 
 namespace Livraria.API.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// ApiController
+    /// </summary>
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[Controller]")]
     public class BookController : ControllerBase 
     {
         private readonly IRepository _repo;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Construtor UserController de IRepository e IMapper
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="mapper"></param>
         public BookController(IRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
 
-        // GET api/book
+        /// <summary>
+        /// Método responsável para retornar todos os livros
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -30,7 +42,11 @@ namespace Livraria.API.Controllers
             return Ok(_mapper.Map<IEnumerable<BookDto>>(books));
         }
 
-        // GET: api/book/byId
+        /// <summary>
+        /// Método responsável por retornar apenas um livro por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -41,7 +57,11 @@ namespace Livraria.API.Controllers
             return Ok(bookDto);
         }
 
-        // POST api/book
+        /// <summary>
+        /// Método responsável em adicionar um novo livro
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(BookDto model)
         {
@@ -56,7 +76,12 @@ namespace Livraria.API.Controllers
             return BadRequest("Unable to register book :(");
         }
 
-        // PUT api/book/
+        /// <summary>
+        /// Método responsável em atualizar um livro por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Put(int id, BookDto model)
         {
@@ -74,7 +99,11 @@ namespace Livraria.API.Controllers
             return BadRequest("Could not update book :(");
         }
 
-        // DELETE api/book/
+        /// <summary>
+        /// Método responsável em deletar um livro por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")] 
         public IActionResult Delete(int id)
         {

@@ -2,7 +2,7 @@
 using Livraria.API.Dtos;
 using Livraria.API.Models;
 
-namespace Livraria.API.Helpers
+namespace Livraria.API.V1.Profiles
 {
     public class LibraryProfile : Profile
     {
@@ -12,6 +12,6 @@ namespace Livraria.API.Helpers
             CreateMap<Book, BookDto>().ReverseMap();
             CreateMap<Publisher, PublisherDto>().ReverseMap();
             CreateMap<Rental, RentalDto>().ReverseMap();
-        }      
+        }
     }
 }

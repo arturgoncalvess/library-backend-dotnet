@@ -9,20 +9,32 @@ using System.Collections.Generic;
 
 namespace Livraria.API.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// ApiController
+    /// </summary>
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[Controller]")]
     public class PublisherController : ControllerBase
     {
         private readonly IRepository _repo;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Construtor UserController de IRepository e IMapper
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="mapper"></param>
         public PublisherController(IRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
 
-        // GET api/publisher
+        /// <summary>
+        /// Método responsável para retornar todas as editoras
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -30,7 +42,11 @@ namespace Livraria.API.Controllers
             return Ok(_mapper.Map<IEnumerable<PublisherDto>>(publishers));
         }
 
-        // GET: api/publisher/byId
+        /// <summary>
+        /// Método responsável por retornar apenas uma editora por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -41,7 +57,11 @@ namespace Livraria.API.Controllers
             return Ok(publisherDto);
         }
 
-        // POST api/publisher
+        /// <summary>
+        /// Método responsável em adicionar uma nova editora
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(PublisherDto model)
         {
@@ -56,7 +76,12 @@ namespace Livraria.API.Controllers
             return BadRequest("Unable to register publisher :(");
         }
 
-        // PUT api/publisher/
+        /// <summary>
+        /// Método responsável em atualizar uma editora por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Put(int id, PublisherDto model)
         {
@@ -74,7 +99,11 @@ namespace Livraria.API.Controllers
             return BadRequest("Unable to update publisher :(");
         }
 
-        // DELETE api/publisher/
+        /// <summary>
+        /// Método responsável em deletar uma editora por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
