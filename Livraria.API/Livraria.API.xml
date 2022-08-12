@@ -157,10 +157,11 @@
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:Livraria.API.Controllers.UserController.Get">
+        <member name="M:Livraria.API.Controllers.UserController.Get(Livraria.API.Helpers.PageParams)">
             <summary>
-            Construtor UserController de IRepository e IMapper
+            Método responsável por retornar todos os usuários com paginação
             </summary>
+            <param name="pageParams"></param>
             <returns></returns>
         </member>
         <member name="M:Livraria.API.Controllers.UserController.GetById(System.Int32)">

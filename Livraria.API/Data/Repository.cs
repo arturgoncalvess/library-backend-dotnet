@@ -1,6 +1,8 @@
-﻿using Livraria.API.Models;
+﻿using Livraria.API.Helpers;
+using Livraria.API.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Livraria.API.Data
 {
@@ -39,6 +41,21 @@ namespace Livraria.API.Data
 
             query = query.AsNoTracking().OrderBy(u => u.Id);
             return query.ToArray();
+        }
+
+        public async Task<PageList<User>> GetAllUsersAsync(PageParams pageParams)
+        {
+            IQueryable<User> query = _context.Users;
+
+            query = query.AsNoTracking().OrderBy(u => u.Id);
+
+            if (!string.IsNullOrEmpty(pageParams.Name))
+            {
+                query = query.Where(user => user.Name.ToUpper().Contains(pageParams.Name.ToUpper()));
+            }
+
+            //return await query.ToListAsync();
+            return await PageList<User>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public User GetUserById(int userId)

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Livraria.API.Data;
 using Livraria.API.Dtos;
+using Livraria.API.Helpers;
 using Livraria.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,16 +32,21 @@ namespace Livraria.API.Controllers
             _repo = repo;
             _mapper = mapper;
         }
-         
+
         /// <summary>
-        /// Construtor UserController de IRepository e IMapper
+        /// Método responsável por retornar todos os usuários com paginação
         /// </summary>
+        /// <param name="pageParams"></param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
-            var users = _repo.GetAllUsers();
-            return Ok(_mapper.Map<IEnumerable<UserDto>>(users));
+            var users = await _repo.GetAllUsersAsync(pageParams);
+            var usersResult = _mapper.Map<IEnumerable<UserDto>>(users);
+
+            Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+
+            return Ok(usersResult);
         }
 
         /// <summary>

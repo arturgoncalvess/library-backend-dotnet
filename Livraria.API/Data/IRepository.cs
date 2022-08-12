@@ -1,7 +1,9 @@
-﻿using Livraria.API.Models;
+﻿using Livraria.API.Helpers;
+using Livraria.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Livraria.API.Data
 {
@@ -13,7 +15,9 @@ namespace Livraria.API.Data
         bool SaveChanges();
 
         // Usuários
+
         User[] GetAllUsers();
+        Task<PageList<User>> GetAllUsersAsync(PageParams pageParams);
         User GetUserById(int userId);
 
         // Livros
