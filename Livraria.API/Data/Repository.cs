@@ -8,8 +8,8 @@ namespace Livraria.API.Data
 {
     public class Repository : IRepository
     {
-        private readonly DataContext _context;
-        public Repository(DataContext context)
+        private readonly LibraryContext _context;
+        public Repository(LibraryContext context)
         {
             _context = context;
         }
@@ -84,6 +84,23 @@ namespace Livraria.API.Data
             return query.ToArray();
         }
 
+        public async Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams)
+        {
+            IQueryable<Book> query = _context.Books;
+
+            query = query.Include(b => b.Publisher);
+
+            query = query.AsNoTracking().OrderBy(b => b.Id);
+
+            if (!string.IsNullOrEmpty(pageParams.Name))
+            {
+                query = query.Where(book => book.Name.ToUpper().Contains(pageParams.Name.ToUpper()));
+            }
+
+            //return await query.ToListAsync();
+            return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+        }
+
         public Book[] GetAllBooksByPublisherId(int publisherId, bool includePublisher = false)
         {
             IQueryable<Book> query = _context.Books;
@@ -125,6 +142,21 @@ namespace Livraria.API.Data
             return query.ToArray();
         }
 
+        public async Task<PageList<Publisher>> GetAllPublishersAsync(PageParams pageParams)
+        {
+            IQueryable<Publisher> query = _context.Publishers;
+
+            query = query.AsNoTracking().OrderBy(p => p.Id);
+
+            if (!string.IsNullOrEmpty(pageParams.Name)) 
+            {
+                query = query.Where(publisher => publisher.Name.ToUpper().Contains(pageParams.Name.ToUpper()));
+            }
+
+            //return await query.ToListAsync();
+            return await PageList<Publisher>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+        }
+
         public Publisher GetPublisherById(int publisherId)
         {
             IQueryable<Publisher> query = _context.Publishers;
@@ -147,6 +179,24 @@ namespace Livraria.API.Data
             query = query.AsNoTracking().OrderBy(r => r.Id);
 
             return query.ToArray();
+        }
+
+        public async Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams)
+        {
+            IQueryable<Rental> query = _context.Rentals;
+
+            query = query.Include(r => r.User);
+            query = query.Include(r => r.Book).ThenInclude(b => b.Publisher);
+
+            query = query.AsNoTracking().OrderBy(r => r.Id);
+
+            if (!string.IsNullOrEmpty(pageParams.Name))
+            {
+                query = query.Where(rental => rental.User.Name.ToUpper().Contains(pageParams.Name.ToUpper()));
+            }
+
+            //return await query.ToListAsync();
+            return await PageList<Rental>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public Rental[] GetAllRentalsByUserId(int userId)

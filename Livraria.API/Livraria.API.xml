@@ -16,7 +16,7 @@
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:Livraria.API.Controllers.BookController.Get">
+        <member name="M:Livraria.API.Controllers.BookController.Get(Livraria.API.Helpers.PageParams)">
             <summary>
             Método responsável para retornar todos os livros
             </summary>
@@ -63,7 +63,7 @@
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:Livraria.API.Controllers.PublisherController.Get">
+        <member name="M:Livraria.API.Controllers.PublisherController.Get(Livraria.API.Helpers.PageParams)">
             <summary>
             Método responsável para retornar todas as editoras
             </summary>
@@ -110,7 +110,7 @@
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:Livraria.API.Controllers.RentalController.Get">
+        <member name="M:Livraria.API.Controllers.RentalController.Get(Livraria.API.Helpers.PageParams)">
             <summary>
             Método responsável para retornar todos os alugueis
             </summary>

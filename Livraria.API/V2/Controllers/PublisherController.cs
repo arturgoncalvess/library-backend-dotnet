@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Livraria.API.Data;
 using Livraria.API.Dtos;
+using Livraria.API.Helpers;
 using Livraria.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,7 +15,7 @@ namespace Livraria.API.Controllers
     /// ApiController
     /// </summary>
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/[Controller]")]
     public class PublisherController : ControllerBase
     {
@@ -36,10 +38,14 @@ namespace Livraria.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
         {
-            var publishers = _repo.GetAllPublishers();
-            return Ok(_mapper.Map<IEnumerable<PublisherDto>>(publishers));
+            var publishers = await _repo.GetAllPublishersAsync(pageParams);
+            var publishersResult = _mapper.Map<IEnumerable<PublisherDto>>(publishers);
+
+            Response.AddPagination(publishers.CurrentPage, publishers.PageSize, publishers.TotalCount, publishers.TotalPages);
+
+            return Ok(publishersResult);
         }
 
         /// <summary>

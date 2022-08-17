@@ -15,22 +15,24 @@ namespace Livraria.API.Data
         bool SaveChanges();
 
         // Usuários
-
         User[] GetAllUsers();
         Task<PageList<User>> GetAllUsersAsync(PageParams pageParams);
         User GetUserById(int userId);
 
         // Livros
         Book[] GetAllBooks(bool includeEditora = false);
+        Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams);
         Book[] GetAllBooksByPublisherId(int publisherId, bool includePublisher = false);
         Book GetBookById(int publisherId, bool includePublisher = false);
 
         // Editoras
         Publisher[] GetAllPublishers();
+        Task<PageList<Publisher>> GetAllPublishersAsync(PageParams pageParams);
         Publisher GetPublisherById(int publisherId);
 
         // Alugueis
         Rental[] GetAllRentals();
+        Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams);
         Rental[] GetAllRentalsByUserId(int userId);
         Rental[] GetAllRentalsByBookId(int bookId);
         Rental GetRentalById(int userId, int bookId);
