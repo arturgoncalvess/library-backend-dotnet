@@ -1,4 +1,5 @@
-﻿using Livraria.API.Helpers;
+﻿using AutoMapper;
+using Livraria.API.Helpers;
 using Livraria.API.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -54,6 +55,21 @@ namespace Livraria.API.Data
                 query = query.Where(user => user.Name.ToUpper().Contains(pageParams.Name.ToUpper()));
             }
 
+            if (!string.IsNullOrEmpty(pageParams.City))
+            {
+                query = query.Where(user => user.City.ToUpper().Contains(pageParams.City.ToUpper()));
+            }
+
+            if (!string.IsNullOrEmpty(pageParams.Address))
+            {
+                query = query.Where(user => user.Address.ToUpper().Contains(pageParams.Address.ToUpper()));
+            }
+
+            if (!string.IsNullOrEmpty(pageParams.Email))
+            {
+                query = query.Where(user => user.Email.ToUpper().Contains(pageParams.Email.ToUpper()));
+            }
+
             //return await query.ToListAsync();
             return await PageList<User>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
@@ -95,6 +111,26 @@ namespace Livraria.API.Data
             if (!string.IsNullOrEmpty(pageParams.Name))
             {
                 query = query.Where(book => book.Name.ToUpper().Contains(pageParams.Name.ToUpper()));
+            }
+
+            if (!string.IsNullOrEmpty(pageParams.Author))
+            {
+                query = query.Where(book => book.Author.ToUpper().Contains(pageParams.Author.ToUpper()));
+            }
+
+            if (pageParams.Launch != null)
+            {
+                query = query.Where(book => book.Launch == pageParams.Launch);
+            }
+
+            if (pageParams.Quantity != null)
+            {
+                query = query.Where(book => book.Quantity == pageParams.Quantity);
+            }
+
+            if (pageParams.TotalRented != null)
+            {
+                query = query.Where(book => book.TotalRented == pageParams.TotalRented);
             }
 
             //return await query.ToListAsync();
@@ -153,6 +189,13 @@ namespace Livraria.API.Data
                 query = query.Where(publisher => publisher.Name.ToUpper().Contains(pageParams.Name.ToUpper()));
             }
 
+            if (!string.IsNullOrEmpty(pageParams.City))
+            {
+                query = query.Where(publisher => publisher.City.ToUpper().Contains(pageParams.City.ToUpper()));
+            }
+
+
+
             //return await query.ToListAsync();
             return await PageList<Publisher>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
@@ -190,9 +233,19 @@ namespace Livraria.API.Data
 
             query = query.AsNoTracking().OrderBy(r => r.Id);
 
-            if (!string.IsNullOrEmpty(pageParams.Name))
+            if (pageParams.Quantity != null)
             {
-                query = query.Where(rental => rental.User.Name.ToUpper().Contains(pageParams.Name.ToUpper()));
+                query = query.Where(book => book.Rental_Date == pageParams.Rental_Date);
+            }
+
+            if (pageParams.TotalRented != null)
+            {
+                query = query.Where(book => book.Forecast_Date == pageParams.Forecast_Date);
+            }
+
+            if (pageParams.TotalRented != null)
+            {
+                query = query.Where(book => book.Rental_Date == pageParams.Rental_Date);
             }
 
             //return await query.ToListAsync();

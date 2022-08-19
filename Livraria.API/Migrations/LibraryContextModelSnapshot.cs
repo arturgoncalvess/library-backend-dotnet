@@ -25,8 +25,8 @@ namespace Livraria.API.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Launch")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("Launch")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
@@ -51,7 +51,7 @@ namespace Livraria.API.Migrations
                         {
                             Id = 1,
                             Author = "Juliano Santos",
-                            Launch = 23072001,
+                            Launch = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Clear Code",
                             PublisherId = 2,
                             Quantity = 10,
@@ -61,7 +61,7 @@ namespace Livraria.API.Migrations
                         {
                             Id = 2,
                             Author = "Alex Santos",
-                            Launch = 8072001,
+                            Launch = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Logica de Programação",
                             PublisherId = 1,
                             Quantity = 68,
@@ -71,7 +71,7 @@ namespace Livraria.API.Migrations
                         {
                             Id = 3,
                             Author = "Raquel Lovewood",
-                            Launch = 23082001,
+                            Launch = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "PHP e Laravel",
                             PublisherId = 3,
                             Quantity = 10,
@@ -81,7 +81,7 @@ namespace Livraria.API.Migrations
                         {
                             Id = 4,
                             Author = "Ana Luana",
-                            Launch = 23072004,
+                            Launch = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Dicionário do Programador",
                             PublisherId = 1,
                             Quantity = 3,

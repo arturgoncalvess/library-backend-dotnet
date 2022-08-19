@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Livraria.API.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,7 +46,7 @@ namespace Livraria.API.Migrations
                     Name = table.Column<string>(nullable: true),
                     Author = table.Column<string>(nullable: true),
                     PublisherId = table.Column<int>(nullable: false),
-                    Launch = table.Column<int>(nullable: false),
+                    Launch = table.Column<DateTime>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     TotalRented = table.Column<int>(nullable: false)
                 },
@@ -128,22 +128,22 @@ namespace Livraria.API.Migrations
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[] { 2, "Alex Santos", 8072001, "Logica de Programação", 1, 68, 90 });
+                values: new object[] { 2, "Alex Santos", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Logica de Programação", 1, 68, 90 });
 
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[] { 4, "Ana Luana", 23072004, "Dicionário do Programador", 1, 3, 23 });
+                values: new object[] { 4, "Ana Luana", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dicionário do Programador", 1, 3, 23 });
 
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[] { 1, "Juliano Santos", 23072001, "Clear Code", 2, 10, 23 });
+                values: new object[] { 1, "Juliano Santos", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Clear Code", 2, 10, 23 });
 
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[] { 3, "Raquel Lovewood", 23082001, "PHP e Laravel", 3, 10, 36 });
+                values: new object[] { 3, "Raquel Lovewood", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "PHP e Laravel", 3, 10, 36 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",

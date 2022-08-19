@@ -25,10 +25,10 @@ namespace Livraria.API.Data
 
             builder.Entity<Book>()
                 .HasData(new List<Book>(){
-                    new Book(1, "Clear Code", "Juliano Santos", 2, 23072001, 10, 23),
-                    new Book(2, "Logica de Programação", "Alex Santos", 1, 08072001, 68, 90),
-                    new Book(3, "PHP e Laravel", "Raquel Lovewood", 3, 23082001, 10, 36),
-                    new Book(4, "Dicionário do Programador", "Ana Luana", 1, 23072004, 3, 23),
+                    new Book(1, "Clear Code", "Juliano Santos", 2, DateTime.Parse("14/10/2010"), 10, 23),
+                    new Book(2, "Logica de Programação", "Alex Santos", 1, DateTime.Parse("14/10/2010"), 68, 90),
+                    new Book(3, "PHP e Laravel", "Raquel Lovewood", 3, DateTime.Parse("14/10/2010"), 10, 36),
+                    new Book(4, "Dicionário do Programador", "Ana Luana", 1, DateTime.Parse("14/10/2010"), 3, 23),
                 });
 
             builder.Entity<Publisher>()
