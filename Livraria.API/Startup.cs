@@ -31,7 +31,7 @@ namespace Livraria.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LibraryContext>(
-                context => context.UseSqlite(Configuration.GetConnectionString("Default"))
+                context => context.UseMySql(Configuration.GetConnectionString("MySqlConnection"))
                 );
 
             services.AddControllers()

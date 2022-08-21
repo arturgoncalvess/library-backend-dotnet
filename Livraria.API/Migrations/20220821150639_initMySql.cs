@@ -1,9 +1,10 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Livraria.API.Migrations
 {
-    public partial class init : Migration
+    public partial class initMySql : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +13,7 @@ namespace Livraria.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true)
                 },
@@ -26,7 +27,7 @@ namespace Livraria.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
@@ -42,7 +43,7 @@ namespace Livraria.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Author = table.Column<string>(nullable: true),
                     PublisherId = table.Column<int>(nullable: false),
@@ -66,7 +67,7 @@ namespace Livraria.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
                     BookId = table.Column<int>(nullable: false),
                     Rental_Date = table.Column<DateTime>(nullable: false),
@@ -93,82 +94,46 @@ namespace Livraria.API.Migrations
             migrationBuilder.InsertData(
                 table: "Publishers",
                 columns: new[] { "Id", "City", "Name" },
-                values: new object[] { 1, "São Paulo", "Informatica Lite" });
-
-            migrationBuilder.InsertData(
-                table: "Publishers",
-                columns: new[] { "Id", "City", "Name" },
-                values: new object[] { 2, "Horizonte", "Expresso Tec" });
-
-            migrationBuilder.InsertData(
-                table: "Publishers",
-                columns: new[] { "Id", "City", "Name" },
-                values: new object[] { 3, "São Paulo", "Nuvem Logica" });
+                values: new object[,]
+                {
+                    { 1, "São Paulo", "Informatica Lite" },
+                    { 2, "Horizonte", "Expresso Tec" },
+                    { 3, "São Paulo", "Nuvem Logica" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "City", "Email", "Name" },
-                values: new object[] { 1, "Rua A", "Fortaleza", "Artur@gmail.com", "Artur" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Address", "City", "Email", "Name" },
-                values: new object[] { 2, "Rua T", "Caucaia", "Ana@gmail.com", "Ana" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Address", "City", "Email", "Name" },
-                values: new object[] { 3, "Rua K", "São Paulo", "Vilma@gmail.com", "Vilma" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Address", "City", "Email", "Name" },
-                values: new object[] { 4, "Rua E", "Fortaleza", "Vitor@gmail.com", "Vitor" });
+                values: new object[,]
+                {
+                    { 1, "Rua A", "Fortaleza", "Artur@gmail.com", "Artur" },
+                    { 2, "Rua T", "Caucaia", "Ana@gmail.com", "Ana" },
+                    { 3, "Rua K", "São Paulo", "Vilma@gmail.com", "Vilma" },
+                    { 4, "Rua E", "Fortaleza", "Vitor@gmail.com", "Vitor" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[] { 2, "Alex Santos", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Logica de Programação", 1, 68, 90 });
-
-            migrationBuilder.InsertData(
-                table: "Books",
-                columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[] { 4, "Ana Luana", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dicionário do Programador", 1, 3, 23 });
-
-            migrationBuilder.InsertData(
-                table: "Books",
-                columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[] { 1, "Juliano Santos", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Clear Code", 2, 10, 23 });
-
-            migrationBuilder.InsertData(
-                table: "Books",
-                columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[] { 3, "Raquel Lovewood", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "PHP e Laravel", 3, 10, 36 });
+                values: new object[,]
+                {
+                    { 2, "Alex Santos", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Logica de Programação", 1, 68, 90 },
+                    { 4, "Ana Luana", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dicionário do Programador", 1, 3, 23 },
+                    { 1, "Juliano Santos", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Clear Code", 2, 10, 23 },
+                    { 3, "Raquel Lovewood", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "PHP e Laravel", 3, 10, 36 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_date", "UserId" },
-                values: new object[] { 4, 2, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 });
-
-            migrationBuilder.InsertData(
-                table: "Rentals",
-                columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_date", "UserId" },
-                values: new object[] { 1, 4, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 });
-
-            migrationBuilder.InsertData(
-                table: "Rentals",
-                columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_date", "UserId" },
-                values: new object[] { 3, 1, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 4 });
-
-            migrationBuilder.InsertData(
-                table: "Rentals",
-                columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_date", "UserId" },
-                values: new object[] { 2, 3, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 });
-
-            migrationBuilder.InsertData(
-                table: "Rentals",
-                columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_date", "UserId" },
-                values: new object[] { 5, 3, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 });
+                values: new object[,]
+                {
+                    { 4, 2, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 1, 4, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 3, 1, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 4 },
+                    { 2, 3, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 5, 3, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_PublisherId",
