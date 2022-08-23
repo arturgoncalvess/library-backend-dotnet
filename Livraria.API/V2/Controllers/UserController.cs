@@ -3,6 +3,7 @@ using Livraria.API.Data;
 using Livraria.API.Dtos;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
+using Livraria.API.Services.User;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace Livraria.API.Controllers
     [Route("api/v{version:apiVersion}/[Controller]")]
     public class UserController : ControllerBase
     {
+        private readonly IUserService _userService;
         private readonly IRepository _repo;
         private readonly IMapper _mapper;
 
@@ -27,8 +29,9 @@ namespace Livraria.API.Controllers
         /// </summary>
         /// <param name="repo"></param>
         /// <param name="mapper"></param>
-        public UserController(IRepository repo, IMapper mapper)
+        public UserController(IUserService service ,IRepository repo, IMapper mapper)
         {
+            _userService = service;
             _repo = repo;
             _mapper = mapper;
         }
@@ -72,16 +75,40 @@ namespace Livraria.API.Controllers
         [HttpPost]
         public IActionResult Post(UserDto model)
         {
-            var user = _mapper.Map<User>(model);
+            _userService.UserValidator(model);
 
-            _repo.Add(user);
-            if(_repo.SaveChanges())
+            if (_userService.UserValidator(model))
             {
-                return Created($"/api/user/{model.Id}", _mapper.Map<UserDto>(user)); 
+                var user = _mapper.Map<User>(model);
+
+                _repo.Add(user);
+                if (_repo.SaveChanges())
+                {
+                    return Created($"/api/user/{model.Id}", _mapper.Map<UserDto>(user));
+                }
             }
 
             return BadRequest("Unable to register user :(");
         }
+
+        ///// <summary>
+        ///// Método responsável em adicionar um novo usuário
+        ///// </summary>
+        ///// <param name="model"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public IActionResult Post(UserDto model)
+        //{
+        //    var user = _mapper.Map<User>(model);
+
+        //    _repo.Add(user);
+        //    if (_repo.SaveChanges())
+        //    {
+        //        return Created($"/api/user/{model.Id}", _mapper.Map<UserDto>(user));
+        //    }
+
+        //    return BadRequest("Unable to register user :(");
+        //}
 
         /// <summary>
         /// Método responsável em atualizar um usuário por meio do ID
