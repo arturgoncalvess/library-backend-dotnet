@@ -2,6 +2,7 @@
 using Livraria.API.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace Livraria.API.Data
         User[] GetAllUsers();
         Task<PageList<User>> GetAllUsersAsync(PageParams pageParams);
         User GetUserById(int userId);
+        User GetUserByEmail(string email);
 
         // Livros
         Book[] GetAllBooks(bool includeEditora = false);

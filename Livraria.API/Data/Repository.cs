@@ -293,5 +293,12 @@ namespace Livraria.API.Data
 
             return query.FirstOrDefault();
         }
+
+        public User GetUserByEmail(string email)
+        {
+            IQueryable<User> query = _context.Users;
+            query = query.Where(u => u.Email == email);
+            return query.FirstOrDefault();
+        }
     }
 }
