@@ -1,6 +1,6 @@
 using AutoMapper;
 using Livraria.API.Data;
-using Livraria.API.Services.Users;
+using Livraria.API.Services.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +43,6 @@ namespace Livraria.API
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IRepository, Repository>();
-
             services.AddScoped<IUserService, UserService>();
 
             services.AddVersionedApiExplorer(options =>

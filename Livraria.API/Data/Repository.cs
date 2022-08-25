@@ -74,17 +74,6 @@ namespace Livraria.API.Data
             return await PageList<User>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
-        public User GetUserByEmail(string email)
-        {
-            IQueryable<User> query = _context.Users;
-
-            query = query.AsNoTracking()
-                .OrderBy(u => u.Email)
-                .Where(user => user.Email == email);
-
-            return query.FirstOrDefault();
-        }
-
         public User GetUserById(int userId)
         {
             IQueryable<User> query = _context.Users;

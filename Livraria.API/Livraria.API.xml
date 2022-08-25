@@ -150,11 +150,10 @@
             ApiController
             </summary>
         </member>
-        <member name="M:Livraria.API.Controllers.UserController.#ctor(Livraria.API.Services.Users.IUserService,Livraria.API.Data.IRepository,AutoMapper.IMapper)">
+        <member name="M:Livraria.API.Controllers.UserController.#ctor(Livraria.API.Services.User.IUserService,Livraria.API.Data.IRepository,AutoMapper.IMapper)">
             <summary>
             Método UserController para IRepository e IMapper
             </summary>
-            <param name="service"></param>
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
