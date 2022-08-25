@@ -17,6 +17,7 @@ namespace Livraria.API.Data
         // Usuários
         User[] GetAllUsers();
         Task<PageList<User>> GetAllUsersAsync(PageParams pageParams);
+        User GetUserByEmail(string email);
         User GetUserById(int userId);
 
         // Livros

@@ -3,7 +3,7 @@ using Livraria.API.Data;
 using Livraria.API.Dtos;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
-using Livraria.API.Services.User;
+using Livraria.API.Services.Users;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,6 +27,7 @@ namespace Livraria.API.Controllers
         /// <summary>
         /// Método UserController para IRepository e IMapper
         /// </summary>
+        /// <param name="service"></param>
         /// <param name="repo"></param>
         /// <param name="mapper"></param>
         public UserController(IUserService service ,IRepository repo, IMapper mapper)
@@ -75,20 +76,16 @@ namespace Livraria.API.Controllers
         [HttpPost]
         public IActionResult Post(UserDto model)
         {
-            _userService.UserValidator(model);
+            var user = _mapper.Map<User>(model);
 
-            if (_userService.UserValidator(model))
+            var result = _userService.UserCreate(user);
+
+            if (result == null)
             {
-                var user = _mapper.Map<User>(model);
-
-                _repo.Add(user);
-                if (_repo.SaveChanges())
-                {
-                    return Created($"/api/user/{model.Id}", _mapper.Map<UserDto>(user));
-                }
+                return BadRequest("Unable to register user :(");
             }
 
-            return BadRequest("Unable to register user :(");
+            return Ok(result);
         }
 
         ///// <summary>
