@@ -11,11 +11,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using FluentValidation.AspNetCore;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Livraria.API.Validator;
+using FluentValidation;
 
 namespace Livraria.API
 {
@@ -36,8 +39,9 @@ namespace Livraria.API
                 );
 
             services.AddControllers()
+                .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<UserValidator>())
                     .AddNewtonsoftJson(
-                        opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore      
+                        opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     );
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -60,7 +64,7 @@ namespace Livraria.API
 
             var apiProviderDescription = services.BuildServiceProvider()
                 .GetService<IApiVersionDescriptionProvider>();
-                                                 
+
             services.AddSwaggerGen(options =>
             {
 
@@ -102,11 +106,11 @@ namespace Livraria.API
             app.UseRouting();
 
             app.UseSwagger()
-                .UseSwaggerUI(options => 
+                .UseSwaggerUI(options =>
                 {
                     foreach (var description in apiDescriptionProvider.ApiVersionDescriptions)
                     {
-                    options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                     }
 
                     options.RoutePrefix = "";
