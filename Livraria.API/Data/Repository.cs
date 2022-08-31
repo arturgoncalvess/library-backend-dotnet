@@ -74,6 +74,17 @@ namespace Livraria.API.Data
             return await PageList<User>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
+        public User GetUserByEmail(string email)
+        {
+            IQueryable<User> query = _context.Users;
+
+            query = query.AsNoTracking()
+                .OrderBy(u => u.Email)
+                .Where(user => user.Email == email);
+
+            return query.FirstOrDefault();
+        }
+
         public User GetUserById(int userId)
         {
             IQueryable<User> query = _context.Users;
@@ -252,17 +263,17 @@ namespace Livraria.API.Data
             return await PageList<Rental>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
-        public Rental[] GetAllRentalsByUserId(int userId)
+        public Rental GetAllRentalsByUserId(int userId)
         {
             IQueryable<Rental> query = _context.Rentals;
 
             query = query.Include(r => r.User);
 
             query = query.AsNoTracking()
-                .OrderBy(r => r.Id)
-                .Where(user => user.Id == userId);
+                .OrderBy(r => r.UserId)
+                .Where(user => user.UserId == userId);
 
-            return query.ToArray();
+            return query.FirstOrDefault();
         }
 
         public Rental[] GetAllRentalsByBookId(int bookId)

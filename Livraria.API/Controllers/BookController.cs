@@ -3,6 +3,7 @@ using Livraria.API.Data;
 using Livraria.API.Dtos;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
+using Livraria.API.Services.Books;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,20 +16,23 @@ namespace Livraria.API.Controllers
     /// ApiController
     /// </summary>
     [ApiController]
-    [ApiVersion("2.0")]
+    [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[Controller]")]
     public class BookController : ControllerBase 
     {
+        private readonly IBookService _bookService;
         private readonly IRepository _repo;
         private readonly IMapper _mapper;
 
         /// <summary>
-        /// Construtor UserController de IRepository e IMapper
+        /// 
         /// </summary>
+        /// <param name="service"></param>
         /// <param name="repo"></param>
         /// <param name="mapper"></param>
-        public BookController(IRepository repo, IMapper mapper)
+        public BookController(IBookService service, IRepository repo, IMapper mapper)
         {
+            _bookService = service;
             _repo = repo;
             _mapper = mapper;
         }
@@ -69,14 +73,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(BookDto model)
+        public IActionResult Post(Book model)
         {
-            var book = _mapper.Map<Book>(model);
+            var result = _bookService.BookCreate(model);
 
-            _repo.Add(book);
-            if (_repo.SaveChanges())
+            if (result != null)
             {
-                return Created($"/api/book/{model.Id}", _mapper.Map<BookDto>(book));
+                return Created($"/api/v1/book/{result.Id}", _mapper.Map<BookDto>(result));
             }
 
             return BadRequest("Unable to register book :(");

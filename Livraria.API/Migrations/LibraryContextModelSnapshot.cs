@@ -51,42 +51,62 @@ namespace Livraria.API.Migrations
                         new
                         {
                             Id = 1,
-                            Author = "Juliano Santos",
-                            Launch = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Clear Code",
+                            Author = "Navathe",
+                            Launch = new DateTime(2002, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Banco de Dados",
                             PublisherId = 2,
-                            Quantity = 10,
-                            TotalRented = 23
+                            Quantity = 98,
+                            TotalRented = 2
                         },
                         new
                         {
                             Id = 2,
-                            Author = "Alex Santos",
-                            Launch = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Logica de Programação",
+                            Author = "Deitel",
+                            Launch = new DateTime(2005, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Redes de Computadores",
                             PublisherId = 1,
-                            Quantity = 68,
-                            TotalRented = 90
+                            Quantity = 99,
+                            TotalRented = 1
                         },
                         new
                         {
                             Id = 3,
-                            Author = "Raquel Lovewood",
-                            Launch = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "PHP e Laravel",
+                            Author = "Deitel",
+                            Launch = new DateTime(2004, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Java Prático",
                             PublisherId = 3,
-                            Quantity = 10,
-                            TotalRented = 36
+                            Quantity = 99,
+                            TotalRented = 1
                         },
                         new
                         {
                             Id = 4,
-                            Author = "Ana Luana",
-                            Launch = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Dicionário do Programador",
+                            Author = "Cormen",
+                            Launch = new DateTime(2006, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Sistemas Operacionais",
+                            PublisherId = 2,
+                            Quantity = 99,
+                            TotalRented = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Author = "Cormen",
+                            Launch = new DateTime(2005, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Algoritmos",
                             PublisherId = 1,
-                            Quantity = 3,
-                            TotalRented = 23
+                            Quantity = 99,
+                            TotalRented = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Author = "Deitel",
+                            Launch = new DateTime(2006, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Programando em C++",
+                            PublisherId = 2,
+                            Quantity = 100,
+                            TotalRented = 0
                         });
                 });
 
@@ -111,19 +131,25 @@ namespace Livraria.API.Migrations
                         {
                             Id = 1,
                             City = "São Paulo",
-                            Name = "Informatica Lite"
+                            Name = "Makron"
                         },
                         new
                         {
                             Id = 2,
-                            City = "Horizonte",
-                            Name = "Expresso Tec"
+                            City = "Rio de Janeiro",
+                            Name = "Campus"
                         },
                         new
                         {
                             Id = 3,
                             City = "São Paulo",
-                            Name = "Nuvem Logica"
+                            Name = "Pearson"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            City = "São Paulo",
+                            Name = "Bookman"
                         });
                 });
 
@@ -160,47 +186,65 @@ namespace Livraria.API.Migrations
                         new
                         {
                             Id = 1,
-                            BookId = 4,
-                            Forecast_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Rental_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 1
+                            BookId = 1,
+                            Forecast_Date = new DateTime(2022, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rental_Date = new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_date = new DateTime(2022, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2
                         },
                         new
                         {
                             Id = 2,
-                            BookId = 3,
-                            Forecast_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Rental_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 3
+                            BookId = 2,
+                            Forecast_Date = new DateTime(2022, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rental_Date = new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_date = new DateTime(2022, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
                         },
                         new
                         {
                             Id = 3,
-                            BookId = 1,
-                            Forecast_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Rental_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            BookId = 5,
+                            Forecast_Date = new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rental_Date = new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_date = new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 4
                         },
                         new
                         {
                             Id = 4,
-                            BookId = 2,
-                            Forecast_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Rental_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            BookId = 3,
+                            Forecast_Date = new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rental_Date = new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_date = new DateTime(2022, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1
                         },
                         new
                         {
                             Id = 5,
-                            BookId = 3,
-                            Forecast_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Rental_Date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 2
+                            BookId = 1,
+                            Forecast_Date = new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rental_Date = new DateTime(2022, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_date = new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BookId = 2,
+                            Forecast_Date = new DateTime(2022, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rental_Date = new DateTime(2022, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_date = new DateTime(2022, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BookId = 4,
+                            Forecast_Date = new DateTime(2022, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rental_Date = new DateTime(2022, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_date = new DateTime(2022, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 4
                         });
                 });
 
@@ -230,34 +274,34 @@ namespace Livraria.API.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "Rua A",
+                            Address = "Rua A,190",
                             City = "Fortaleza",
-                            Email = "Artur@gmail.com",
-                            Name = "Artur"
+                            Email = "joão@bol",
+                            Name = "João Lopes"
                         },
                         new
                         {
                             Id = 2,
-                            Address = "Rua T",
+                            Address = "Av. B, 1200",
                             City = "Caucaia",
-                            Email = "Ana@gmail.com",
-                            Name = "Ana"
+                            Email = "ms@gmail",
+                            Name = "Marcelo Silva"
                         },
                         new
                         {
                             Id = 3,
-                            Address = "Rua K",
+                            Address = "Rua C, 87",
                             City = "São Paulo",
-                            Email = "Vilma@gmail.com",
-                            Name = "Vilma"
+                            Email = "aguiar@ig",
+                            Name = "Carlos Aguiar"
                         },
                         new
                         {
                             Id = 4,
-                            Address = "Rua E",
+                            Address = "Rua D, 120",
                             City = "Fortaleza",
-                            Email = "Vitor@gmail.com",
-                            Name = "Vitor"
+                            Email = "rporto@bol",
+                            Name = "Roberto Porto"
                         });
                 });
 

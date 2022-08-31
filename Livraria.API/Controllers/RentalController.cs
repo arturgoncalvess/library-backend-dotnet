@@ -3,6 +3,7 @@ using Livraria.API.Data;
 using Livraria.API.Dtos;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
+using Livraria.API.Services.Rentals;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,20 +16,23 @@ namespace Livraria.API.Controllers
     /// ApiController
     /// </summary>
     [ApiController]
-    [ApiVersion("2.0")]
+    [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[Controller]")]
     public class RentalController : ControllerBase
     {
+        private readonly IRentalService _rentalService;
         private readonly IRepository _repo;
         private readonly IMapper _mapper;
 
         /// <summary>
-        /// Construtor UserController de IRepository e IMapper
+        /// 
         /// </summary>
+        /// <param name="service"></param>
         /// <param name="repo"></param>
         /// <param name="mapper"></param>
-        public RentalController(IRepository repo, IMapper mapper)
+        public RentalController(IRentalService service, IRepository repo, IMapper mapper)
         {
+            _rentalService = service;
             _repo = repo;
             _mapper = mapper;
         }
@@ -70,14 +74,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(RentalDto model)
+        public IActionResult Post(Rental model)
         {
-            var rental = _mapper.Map<Rental>(model);
+            var result = _rentalService.RentalCreate(model);
 
-            _repo.Add(rental);
-            if (_repo.SaveChanges())
+            if (result != null)
             {
-                return Created($"/api/rental/{model.Id}", _mapper.Map<RentalDto>(rental));
+                return Created($"/api/v1/rental/{model.Id}", _mapper.Map<RentalDto>(model));
             }
 
             return BadRequest("Unable to register rental :(");

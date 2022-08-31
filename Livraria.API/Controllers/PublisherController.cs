@@ -3,6 +3,7 @@ using Livraria.API.Data;
 using Livraria.API.Dtos;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
+using Livraria.API.Services.Publishers;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,20 +16,23 @@ namespace Livraria.API.Controllers
     /// ApiController
     /// </summary>
     [ApiController]
-    [ApiVersion("2.0")]
+    [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[Controller]")]
     public class PublisherController : ControllerBase
     {
+        private readonly IPublisherService _publisherService;
         private readonly IRepository _repo;
         private readonly IMapper _mapper;
 
         /// <summary>
-        /// Construtor UserController de IRepository e IMapper
+        /// 
         /// </summary>
+        /// <param name="service"></param>
         /// <param name="repo"></param>
         /// <param name="mapper"></param>
-        public PublisherController(IRepository repo, IMapper mapper)
+        public PublisherController(IPublisherService service, IRepository repo, IMapper mapper)
         {
+            _publisherService = service;
             _repo = repo;
             _mapper = mapper;
         }
@@ -69,14 +73,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(PublisherDto model)
+        public IActionResult Post(Publisher model)
         {
-            var publisher = _mapper.Map<Publisher>(model);
+            var result = _publisherService.PublisherCreate(model);
 
-            _repo.Add(publisher);
-            if (_repo.SaveChanges())
+            if (result != null)
             {
-                return Created($"/api/publisher/{model.Id}", _mapper.Map<PublisherDto>(publisher));
+                return Created($"/api/v1/publisher/{result.Id}", _mapper.Map<PublisherDto>(result));
             }
 
             return BadRequest("Unable to register publisher :(");

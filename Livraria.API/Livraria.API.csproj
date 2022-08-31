@@ -6,7 +6,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>Livraria.API.xml</DocumentationFile>
-		<NoWarn>1701;1702;1591;0000</NoWarn>
+		<NoWarn>8632;1591;0000</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,10 +21,6 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.1.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Migrations\" />
 	</ItemGroup>
 
 

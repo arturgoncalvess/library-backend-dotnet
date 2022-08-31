@@ -1,6 +1,5 @@
-using AutoMapper;
 using Livraria.API.Data;
-using Livraria.API.Services.User;
+using Livraria.API.Services.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,16 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
 using FluentValidation.AspNetCore;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
+using Livraria.API.Services.Books;
+using Livraria.API.Services.Publishers;
+using Livraria.API.Services.Rentals;
 using Livraria.API.Validator;
-using FluentValidation;
 
 namespace Livraria.API
 {
@@ -40,6 +37,9 @@ namespace Livraria.API
 
             services.AddControllers()
                 .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<UserValidator>())
+                .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<BookValidator>())
+                .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<PublisherValidator>())
+                .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<RentalValidator>())
                     .AddNewtonsoftJson(
                         opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     );
@@ -48,6 +48,9 @@ namespace Livraria.API
 
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IPublisherService, PublisherService>();
+            services.AddScoped<IRentalService, RentalService>();
 
             services.AddVersionedApiExplorer(options =>
             {

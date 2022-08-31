@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Livraria.API.Migrations
 {
-    public partial class initMySql : Migration
+    public partial class initMySQL : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -96,9 +96,10 @@ namespace Livraria.API.Migrations
                 columns: new[] { "Id", "City", "Name" },
                 values: new object[,]
                 {
-                    { 1, "São Paulo", "Informatica Lite" },
-                    { 2, "Horizonte", "Expresso Tec" },
-                    { 3, "São Paulo", "Nuvem Logica" }
+                    { 1, "São Paulo", "Makron" },
+                    { 2, "Rio de Janeiro", "Campus" },
+                    { 3, "São Paulo", "Pearson" },
+                    { 4, "São Paulo", "Bookman" }
                 });
 
             migrationBuilder.InsertData(
@@ -106,10 +107,10 @@ namespace Livraria.API.Migrations
                 columns: new[] { "Id", "Address", "City", "Email", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Rua A", "Fortaleza", "Artur@gmail.com", "Artur" },
-                    { 2, "Rua T", "Caucaia", "Ana@gmail.com", "Ana" },
-                    { 3, "Rua K", "São Paulo", "Vilma@gmail.com", "Vilma" },
-                    { 4, "Rua E", "Fortaleza", "Vitor@gmail.com", "Vitor" }
+                    { 1, "Rua A,190", "Fortaleza", "joão@bol", "João Lopes" },
+                    { 2, "Av. B, 1200", "Caucaia", "ms@gmail", "Marcelo Silva" },
+                    { 3, "Rua C, 87", "São Paulo", "aguiar@ig", "Carlos Aguiar" },
+                    { 4, "Rua D, 120", "Fortaleza", "rporto@bol", "Roberto Porto" }
                 });
 
             migrationBuilder.InsertData(
@@ -117,10 +118,12 @@ namespace Livraria.API.Migrations
                 columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
                 values: new object[,]
                 {
-                    { 2, "Alex Santos", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Logica de Programação", 1, 68, 90 },
-                    { 4, "Ana Luana", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dicionário do Programador", 1, 3, 23 },
-                    { 1, "Juliano Santos", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Clear Code", 2, 10, 23 },
-                    { 3, "Raquel Lovewood", new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "PHP e Laravel", 3, 10, 36 }
+                    { 2, "Deitel", new DateTime(2005, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Redes de Computadores", 1, 99, 1 },
+                    { 5, "Cormen", new DateTime(2005, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Algoritmos", 1, 99, 1 },
+                    { 1, "Navathe", new DateTime(2002, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Banco de Dados", 2, 98, 2 },
+                    { 4, "Cormen", new DateTime(2006, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sistemas Operacionais", 2, 99, 1 },
+                    { 6, "Deitel", new DateTime(2006, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Programando em C++", 2, 100, 0 },
+                    { 3, "Deitel", new DateTime(2004, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Java Prático", 3, 99, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -128,11 +131,13 @@ namespace Livraria.API.Migrations
                 columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_date", "UserId" },
                 values: new object[,]
                 {
-                    { 4, 2, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 1, 4, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 3, 1, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 4 },
-                    { 2, 3, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 5, 3, new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 }
+                    { 2, 2, new DateTime(2022, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 6, 2, new DateTime(2022, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 3, 5, new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 4 },
+                    { 1, 1, new DateTime(2022, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 5, 1, new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 7, 4, new DateTime(2022, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 4 },
+                    { 4, 3, new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 }
                 });
 
             migrationBuilder.CreateIndex(

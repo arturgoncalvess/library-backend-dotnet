@@ -9,10 +9,11 @@
             ApiController
             </summary>
         </member>
-        <member name="M:Livraria.API.Controllers.BookController.#ctor(Livraria.API.Data.IRepository,AutoMapper.IMapper)">
+        <member name="M:Livraria.API.Controllers.BookController.#ctor(Livraria.API.Services.Books.IBookService,Livraria.API.Data.IRepository,AutoMapper.IMapper)">
             <summary>
-            Construtor UserController de IRepository e IMapper
+            
             </summary>
+            <param name="service"></param>
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
@@ -29,7 +30,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.BookController.Post(Livraria.API.Dtos.BookDto)">
+        <member name="M:Livraria.API.Controllers.BookController.Post(Livraria.API.Models.Book)">
             <summary>
             Método responsável em adicionar um novo livro
             </summary>
@@ -56,10 +57,11 @@
             ApiController
             </summary>
         </member>
-        <member name="M:Livraria.API.Controllers.PublisherController.#ctor(Livraria.API.Data.IRepository,AutoMapper.IMapper)">
+        <member name="M:Livraria.API.Controllers.PublisherController.#ctor(Livraria.API.Services.Publishers.IPublisherService,Livraria.API.Data.IRepository,AutoMapper.IMapper)">
             <summary>
-            Construtor UserController de IRepository e IMapper
+            
             </summary>
+            <param name="service"></param>
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
@@ -76,7 +78,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.PublisherController.Post(Livraria.API.Dtos.PublisherDto)">
+        <member name="M:Livraria.API.Controllers.PublisherController.Post(Livraria.API.Models.Publisher)">
             <summary>
             Método responsável em adicionar uma nova editora
             </summary>
@@ -103,10 +105,11 @@
             ApiController
             </summary>
         </member>
-        <member name="M:Livraria.API.Controllers.RentalController.#ctor(Livraria.API.Data.IRepository,AutoMapper.IMapper)">
+        <member name="M:Livraria.API.Controllers.RentalController.#ctor(Livraria.API.Services.Rentals.IRentalService,Livraria.API.Data.IRepository,AutoMapper.IMapper)">
             <summary>
-            Construtor UserController de IRepository e IMapper
+            
             </summary>
+            <param name="service"></param>
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
@@ -123,7 +126,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.RentalController.Post(Livraria.API.Dtos.RentalDto)">
+        <member name="M:Livraria.API.Controllers.RentalController.Post(Livraria.API.Models.Rental)">
             <summary>
             Método responsável em adicionar um novo aluguel
             </summary>
@@ -150,10 +153,11 @@
             ApiController
             </summary>
         </member>
-        <member name="M:Livraria.API.Controllers.UserController.#ctor(Livraria.API.Services.User.IUserService,Livraria.API.Data.IRepository,AutoMapper.IMapper)">
+        <member name="M:Livraria.API.Controllers.UserController.#ctor(Livraria.API.Services.Users.IUserService,Livraria.API.Data.IRepository,AutoMapper.IMapper)">
             <summary>
-            Método UserController para IRepository e IMapper
+            
             </summary>
+            <param name="service"></param>
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
@@ -171,14 +175,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.UserController.Post(Livraria.API.Dtos.UserDto)">
+        <member name="M:Livraria.API.Controllers.UserController.Post(Livraria.API.Models.User)">
             <summary>
             Método responsável em adicionar um novo usuário
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.UserController.Put(System.Int32,Livraria.API.Dtos.UserDto)">
+        <member name="M:Livraria.API.Controllers.UserController.Put(System.Int32,Livraria.API.Models.User)">
             <summary>
             Método responsável em atualizar um usuário por meio do ID
             </summary>
