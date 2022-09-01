@@ -21,10 +21,10 @@ namespace Livraria.API.Data
         User GetUserById(int userId);
 
         // Livros
-        Book[] GetAllBooks(bool includeEditora = false);
+        Book[] GetAllBooks();
         Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams);
-        Book[] GetAllBooksByPublisherId(int publisherId, bool includePublisher = false);
-        Book GetBookById(int publisherId, bool includePublisher = false);
+        Book GetAllBooksByPublisherId(int publisherId);
+        Book GetBookById(int bookId);
 
         // Editoras
         Publisher[] GetAllPublishers();
@@ -35,7 +35,7 @@ namespace Livraria.API.Data
         Rental[] GetAllRentals();
         Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams);
         Rental GetAllRentalsByUserId(int userId);
-        Rental[] GetAllRentalsByBookId(int bookId);
-        Rental GetRentalById(int userId, int bookId);
+        Rental GetAllRentalsByBookId(int bookId);
+        Rental GetRentalById(int rentalId);
     }
 }

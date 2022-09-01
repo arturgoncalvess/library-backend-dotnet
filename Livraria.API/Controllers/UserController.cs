@@ -83,7 +83,7 @@ namespace Livraria.API.Controllers
                 return Created($"/api/v1/user/{result.Id}", _mapper.Map<UserDto>(result));
             }
 
-            return BadRequest("Unable to register user :(");
+            return BadRequest("Unable to register user.");
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Livraria.API.Controllers
                 return Created($"/api/user/{model.Id}", _mapper.Map<UserDto>(result));
             }
 
-            return BadRequest("Could not update user :(");
+            return BadRequest("Could not update user.");
         }
 
         /// <summary>

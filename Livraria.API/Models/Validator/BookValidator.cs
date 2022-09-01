@@ -7,10 +7,6 @@ namespace Livraria.API.Validator
     {
         public BookValidator()
         {
-            RuleFor(b => b.Id)
-                .Empty()
-                .WithMessage("Id must be empty.");
-
             RuleFor(b => b.Name)
                 .NotEmpty()
                 .WithMessage("Empty name.")

@@ -82,7 +82,7 @@ namespace Livraria.API.Controllers
                 return Created($"/api/v1/publisher/{result.Id}", _mapper.Map<PublisherDto>(result));
             }
 
-            return BadRequest("Unable to register publisher :(");
+            return BadRequest("Unable to register publisher.");
         }
 
         /// <summary>
@@ -92,20 +92,16 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult Put(int id, PublisherDto model)
+        public IActionResult Put(int id, Publisher model)
         {
-            var publisher = _repo.GetPublisherById(id);
-            if (publisher == null) return BadRequest("Publisher not found :(");
+            var result = _publisherService.PublisherUpdate(id, model);
 
-            _mapper.Map(model, publisher);
-
-            _repo.Update(publisher);
-            if (_repo.SaveChanges())
+            if (result != null)
             {
-                return Created($"/api/publisher/{model.Id}", _mapper.Map<PublisherDto>(publisher));
+                return Created($"/api/publisher/{model.Id}", _mapper.Map<PublisherDto>(result));
             }
 
-            return BadRequest("Unable to update publisher :(");
+            return BadRequest("Unable to update publisher.");
         }
 
         /// <summary>
@@ -116,16 +112,14 @@ namespace Livraria.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var publisher = _repo.GetPublisherById(id);
-            if (publisher == null) return BadRequest("Publisher not found :(");
+            var result = _publisherService.PublisherDelete(id);
 
-            _repo.Delete(publisher);
-            if (_repo.SaveChanges())
+            if (result != null)
             {
-                return Ok("Publisher deleted :)");
+                return Ok("Publisher deleted.");
             }
 
-            return BadRequest("Unable to delete publisher :(");
+            return BadRequest("Unable to delete publisher");
         }
 
     }

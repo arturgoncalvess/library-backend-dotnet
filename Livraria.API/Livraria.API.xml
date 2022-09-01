@@ -37,7 +37,7 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.BookController.Put(System.Int32,Livraria.API.Dtos.BookDto)">
+        <member name="M:Livraria.API.Controllers.BookController.Put(System.Int32,Livraria.API.Models.Book)">
             <summary>
             Método responsável em atualizar um livro por meio do ID
             </summary>
@@ -85,7 +85,7 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.PublisherController.Put(System.Int32,Livraria.API.Dtos.PublisherDto)">
+        <member name="M:Livraria.API.Controllers.PublisherController.Put(System.Int32,Livraria.API.Models.Publisher)">
             <summary>
             Método responsável em atualizar uma editora por meio do ID
             </summary>
@@ -133,7 +133,7 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.RentalController.Put(System.Int32,Livraria.API.Dtos.RentalDto)">
+        <member name="M:Livraria.API.Controllers.RentalController.Put(System.Int32,Livraria.API.Models.Rental)">
             <summary>
             Método responsável em atualizar um aluguel por meio do ID
             </summary>

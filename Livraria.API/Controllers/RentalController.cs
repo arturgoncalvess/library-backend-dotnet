@@ -61,8 +61,8 @@ namespace Livraria.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var rental = _repo.GetRentalById(id, id);
-            if (rental == null) return BadRequest("Rental not found :(");
+            var rental = _repo.GetRentalById(id);
+            if (rental == null) return BadRequest("Rental not found.");
 
             var rentalDto = _mapper.Map<RentalDto>(rental);
             return Ok(rentalDto);
@@ -83,7 +83,7 @@ namespace Livraria.API.Controllers
                 return Created($"/api/v1/rental/{model.Id}", _mapper.Map<RentalDto>(model));
             }
 
-            return BadRequest("Unable to register rental :(");
+            return BadRequest("Unable to register rental.");
         }
 
         /// <summary>
@@ -93,20 +93,16 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult Put(int id, RentalDto model)
+        public IActionResult Put(int id, Rental model)
         {
-            var rental = _repo.GetRentalById(id, id);
-            if (rental == null) return BadRequest("Rental not found :(");
+            var result = _rentalService.RentalUpdate(id, model);
 
-            _mapper.Map(model, rental);
-
-            _repo.Update(rental);
-            if (_repo.SaveChanges())
+            if (result != null)
             {
-                return Created($"/api/rental/{model.Id}", _mapper.Map<RentalDto>(rental));
+                return Created($"/api/v1/rental/{model.Id}", _mapper.Map<RentalDto>(result));
             }
 
-            return BadRequest("Unable to update rental :(");
+            return BadRequest("Unable to update rental.");
         }
 
         /// <summary>
@@ -117,16 +113,14 @@ namespace Livraria.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var ren = _repo.GetRentalById(id, id);
-            if (ren == null) return BadRequest("Rental not found :(");
+            var result = _rentalService.RentalDelete(id);
             
-            _repo.Delete(ren);
-            if (_repo.SaveChanges())
+            if (result != null)
             {
-                return Ok("Rental deleted :)");
+                return Ok("Rental deleted.");
             }
 
-            return BadRequest("Unable to delete rental :(");
+            return BadRequest("Unable to delete rental.");
 
         }
     }

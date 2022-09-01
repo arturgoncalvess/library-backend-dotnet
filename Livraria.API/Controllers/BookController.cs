@@ -60,8 +60,8 @@ namespace Livraria.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var book = _repo.GetBookById(id, true);
-            if (book == null) return BadRequest("Book not found :(");
+            var book = _repo.GetBookById(id);
+            if (book == null) return BadRequest("Book not found.");
 
             var bookDto = _mapper.Map<BookDto>(book);
             return Ok(bookDto);
@@ -82,7 +82,7 @@ namespace Livraria.API.Controllers
                 return Created($"/api/v1/book/{result.Id}", _mapper.Map<BookDto>(result));
             }
 
-            return BadRequest("Unable to register book :(");
+            return BadRequest("Unable to register book.");
         }
 
         /// <summary>
@@ -92,20 +92,16 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult Put(int id, BookDto model)
+        public IActionResult Put(int id, Book model)
         {
-            var book = _repo.GetBookById(id, true);
-            if (book == null) return BadRequest("Book not found :(");
+            var result = _bookService.BookUpdate(id, model);
 
-            _mapper.Map(model, book);
-
-            _repo.Update(book);
-            if (_repo.SaveChanges())
+            if (result != null)
             {
-                return Created($"/api/book/{model.Id}", _mapper.Map<BookDto>(book));
+                return Created($"/api/v1/book/{model.Id}", _mapper.Map<BookDto>(result));
             }
 
-            return BadRequest("Could not update book :(");
+            return BadRequest("Could not update book.");
         }
 
         /// <summary>
@@ -116,16 +112,14 @@ namespace Livraria.API.Controllers
         [HttpDelete("{id}")] 
         public IActionResult Delete(int id)
         {
-            var boo = _repo.GetBookById(id, true);
-            if (boo == null) return BadRequest("Book not found :(");
+            var result = _bookService.BookDelete(id);
 
-            _repo.Delete(boo);
-            if (_repo.SaveChanges())
+            if (result != null)
             {
-                return Ok("Deleted book :)");
+                return Ok("Deleted book.");
             }
 
-            return BadRequest("Unable to delete book :(");
+            return BadRequest("Unable to delete book.");
         }
 
     }

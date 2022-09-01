@@ -31,9 +31,9 @@ namespace Livraria.API.Services.Users
             return null;
         }
 
-        public User UserUpdate(int id, User model)
+        public User UserUpdate(int userId, User model)
         {
-            var user = _repo.GetUserById(id);
+            var user = _repo.GetUserById(userId);
             _mapper.Map(model, user);
 
             if (user == null)
@@ -41,7 +41,7 @@ namespace Livraria.API.Services.Users
                 return null;
             }
 
-            if (id != model.Id)
+            if (userId != model.Id)
             {
                 return null;
             }
@@ -61,15 +61,14 @@ namespace Livraria.API.Services.Users
             return null;
         }
 
-        public User UserDelete(int id)
+        public User UserDelete(int userId)
         {
-            var user = _repo.GetUserById(id);
+            var user = _repo.GetUserById(userId);
             if (user == null)
             {
                 return null;
             }
 
-            int userId = id;
             var checkRental = _repo.GetAllRentalsByUserId(userId);
             if (checkRental != null)
             {

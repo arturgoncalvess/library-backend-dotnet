@@ -3,6 +3,7 @@ using Livraria.API.Helpers;
 using Livraria.API.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Livraria.API.Data
@@ -97,14 +98,11 @@ namespace Livraria.API.Data
         }
 
         // Livros
-        public Book[] GetAllBooks(bool includePublisher = false)
+        public Book[] GetAllBooks()
         {
             IQueryable<Book> query = _context.Books;
 
-            if (includePublisher)
-            {
-                query = query.Include(b => b.Publisher);
-            }
+            query = query.Include(b => b.Publisher);
 
             query = query.AsNoTracking().OrderBy(b => b.Id);
 
@@ -148,34 +146,28 @@ namespace Livraria.API.Data
             return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
-        public Book[] GetAllBooksByPublisherId(int publisherId, bool includePublisher = false)
+        public Book GetAllBooksByPublisherId(int publisherId)
         {
             IQueryable<Book> query = _context.Books;
 
-            if (includePublisher)
-            {
-                query = query.Include(b => b.Publisher);
-            }
+            query = query.Include(b => b.Publisher);
 
             query = query.AsNoTracking()
                 .OrderBy(b => b.Id)
                 .Where(publisher => publisher.Id == publisherId);
 
-            return query.ToArray();
+            return query.FirstOrDefault();
         }
 
-        public Book GetBookById(int publisherId, bool includePublisher = false)
+        public Book GetBookById(int bookId)
         {
             IQueryable<Book> query = _context.Books;
 
-            if (includePublisher)
-            {
-                query = query.Include(b => b.Publisher);
-            }
+            query = query.Include(b => b.Publisher);
 
             query = query.AsNoTracking()
                 .OrderBy(b => b.Id)
-                .Where(publisher => publisher.Id == publisherId);
+                .Where(publisher => publisher.Id == bookId);
 
             return query.FirstOrDefault();
         }
@@ -228,7 +220,7 @@ namespace Livraria.API.Data
             IQueryable<Rental> query = _context.Rentals;
 
             query = query.Include(r => r.User);
-            query = query.Include(r => r.Book).ThenInclude(b => b.Publisher);
+            query = query.Include(r => r.Book).ThenInclude(r => r.Publisher);
 
             query = query.AsNoTracking().OrderBy(r => r.Id);
 
@@ -276,31 +268,31 @@ namespace Livraria.API.Data
             return query.FirstOrDefault();
         }
 
-        public Rental[] GetAllRentalsByBookId(int bookId)
+        public Rental GetAllRentalsByBookId(int bookId)
         {
             IQueryable<Rental> query = _context.Rentals;
 
             query = query.Include(r => r.Book);
 
             query = query.AsNoTracking()
-                .OrderBy(r => r.Id)
-                .Where(book => book.Id == bookId);
+                .OrderBy(r => r.BookId)
+                .Where(book => book.BookId == bookId);
 
-            return query.ToArray();
+            return query.FirstOrDefault();
         }
 
-        public Rental GetRentalById(int userId, int bookId)
+        public Rental GetRentalById(int rentalId)
         {
             IQueryable<Rental> query = _context.Rentals;
 
-            query = query.Include(l => l.User);
-            query = query.Include(l => l.Book);
+            query = query.Include(r => r.User);
+            query = query.Include(r => r.Book).ThenInclude(r => r.Publisher);
 
 
             query = query.AsNoTracking()
                 .OrderBy(a => a.Id)
-                .Where(usuario => usuario.Id == userId)
-                .Where(livro => livro.Id == bookId);
+                .Where(user => user.Id == rentalId)
+                .Where(book => book.Id == rentalId);
 
             return query.FirstOrDefault();
         }
