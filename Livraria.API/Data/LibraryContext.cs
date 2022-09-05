@@ -43,13 +43,13 @@ namespace Livraria.API.Data
 
             builder.Entity<Rental>()
                 .HasData(new List<Rental>(){
-                    new Rental(1, 2, 1, DateTime.Parse("14/10/2022"), DateTime.Parse("23/10/2022"), DateTime.Parse("25/10/2022")),
-                    new Rental(2, 1, 2, DateTime.Parse("14/10/2022"), DateTime.Parse("27/10/2022"), DateTime.Parse("28/10/2022")),
-                    new Rental(3, 4, 5, DateTime.Parse("01/10/2022"), DateTime.Parse("15/10/2022"), DateTime.Parse("18/10/2022")),
-                    new Rental(4, 1, 3, DateTime.Parse("14/10/2022"), DateTime.Parse("18/10/2022"), DateTime.Parse("20/10/2022")),
-                    new Rental(5, 3, 1, DateTime.Parse("14/09/2022"), DateTime.Parse("14/10/2022"), DateTime.Parse("15/10/2022")),
-                    new Rental(6, 3, 2, DateTime.Parse("23/07/2022"), DateTime.Parse("30/07/2022"), DateTime.Parse("01/08/2022")),
-                    new Rental(7, 4, 4, DateTime.Parse("23/10/2022"), DateTime.Parse("09/11/2022"), DateTime.Parse("14/11/2022")),
+                    new Rental(1, 2, 1, DateTime.Parse("14/10/2022"), DateTime.Parse("23/10/2022"), DateTime.Parse("25/10/2022"), false),
+                    new Rental(2, 1, 2, DateTime.Parse("14/10/2022"), DateTime.Parse("27/10/2022"), DateTime.Parse("28/10/2022"), false),
+                    new Rental(3, 4, 5, DateTime.Parse("01/10/2022"), DateTime.Parse("15/10/2022"), DateTime.Parse("18/10/2022"), false),
+                    new Rental(4, 1, 3, DateTime.Parse("14/10/2022"), DateTime.Parse("18/10/2022"), DateTime.Parse("20/10/2022"), false),
+                    new Rental(5, 3, 1, DateTime.Parse("14/09/2022"), DateTime.Parse("14/10/2022"), DateTime.Parse("15/10/2022"), false),
+                    new Rental(6, 3, 2, DateTime.Parse("23/07/2022"), DateTime.Parse("30/07/2022"), DateTime.Parse("01/08/2022"), false),
+                    new Rental(7, 4, 4, DateTime.Parse("23/10/2022"), DateTime.Parse("09/11/2022"), DateTime.Parse("14/11/2022"), false),
                 });
         }
     }

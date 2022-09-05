@@ -41,13 +41,14 @@ namespace Livraria.API.Services.Users
                 return null;
             }
 
-            if (userId != model.Id)
+            var checkEmail = _repo.GetUserByEmail(model.Email);
+            if (checkEmail != null && checkEmail.Id != userId)
             {
                 return null;
             }
 
-            var checkEmail = _repo.GetUserByEmail(model.Email);
-            if (checkEmail != null && checkEmail.Id != model.Id)
+            model.Id = userId;
+            if (model.Id != userId)
             {
                 return null;
             }

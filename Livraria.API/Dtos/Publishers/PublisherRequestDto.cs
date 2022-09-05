@@ -1,6 +1,6 @@
-﻿namespace Livraria.API.Dtos
+﻿namespace Livraria.API.Dtos.Publishers
 {
-    public class PublisherDto
+    public class PublisherRequestDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

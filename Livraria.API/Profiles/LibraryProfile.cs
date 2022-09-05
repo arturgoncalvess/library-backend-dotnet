@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
-using Livraria.API.Dtos;
+using Livraria.API.Dtos.Books;
+using Livraria.API.Dtos.Publishers;
+using Livraria.API.Dtos.Rentals;
+using Livraria.API.Dtos.Users;
 using Livraria.API.Models;
 
 namespace Livraria.API.V1.Profiles
@@ -8,10 +11,15 @@ namespace Livraria.API.V1.Profiles
     {
         public LibraryProfile()
         {
-            CreateMap<User, UserDto>().ReverseMap();
-            CreateMap<Book, BookDto>().ReverseMap();
-            CreateMap<Publisher, PublisherDto>().ReverseMap();
-            CreateMap<Rental, RentalDto>().ReverseMap();
+            CreateMap<User, UserRequestDto>().ReverseMap();
+            CreateMap<User, UserResponseDto>().ReverseMap();
+            CreateMap<Book, BookRequestDto>().ReverseMap();
+            CreateMap<Book, BookResponseDto>().ReverseMap();
+            CreateMap<Publisher, PublisherRequestDto>().ReverseMap();
+            CreateMap<Publisher, PublisherResponseDto>().ReverseMap();
+            CreateMap<Rental, RentalRequestDto>().ReverseMap();
+            CreateMap<Rental, RentalResponseDto>().ReverseMap();
+            CreateMap<Rental, RentalDevolutionDto>().ReverseMap();
         }
     }
 }

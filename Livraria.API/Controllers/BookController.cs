@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Livraria.API.Data;
-using Livraria.API.Dtos;
+using Livraria.API.Dtos.Books;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
 using Livraria.API.Services.Books;
@@ -45,7 +45,7 @@ namespace Livraria.API.Controllers
         public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
         {
             var books = await _repo.GetAllBooksAsync(pageParams);
-            var booksResult = _mapper.Map<IEnumerable<BookDto>>(books);
+            var booksResult = _mapper.Map<IEnumerable<BookResponseDto>>(books);
 
             Response.AddPagination(books.CurrentPage, books.PageSize, books.TotalCount, books.TotalPages);
 
@@ -63,7 +63,7 @@ namespace Livraria.API.Controllers
             var book = _repo.GetBookById(id);
             if (book == null) return BadRequest("Book not found.");
 
-            var bookDto = _mapper.Map<BookDto>(book);
+            var bookDto = _mapper.Map<BookResponseDto>(book);
             return Ok(bookDto);
         }
 
@@ -73,13 +73,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(Book model)
+        public IActionResult Post(BookRequestDto model)
         {
-            var result = _bookService.BookCreate(model);
+            var result = _bookService.BookCreate(_mapper.Map<Book>(model));
 
             if (result != null)
             {
-                return Created($"/api/v1/book/{result.Id}", _mapper.Map<BookDto>(result));
+                return Created($"/api/v1/book/{result.Id}", _mapper.Map<BookResponseDto>(result));
             }
 
             return BadRequest("Unable to register book.");
@@ -92,13 +92,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Book model)
+        public IActionResult Put(int id, BookRequestDto model)
         {
-            var result = _bookService.BookUpdate(id, model);
+            var result = _bookService.BookUpdate(id, _mapper.Map<Book>(model));
 
             if (result != null)
             {
-                return Created($"/api/v1/book/{model.Id}", _mapper.Map<BookDto>(result));
+                return Created($"/api/v1/book/{result.Id}", _mapper.Map<BookResponseDto>(result));
             }
 
             return BadRequest("Could not update book.");

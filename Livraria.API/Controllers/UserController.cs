@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Livraria.API.Data;
-using Livraria.API.Dtos;
+using Livraria.API.Dtos.Users;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
 using Livraria.API.Services.Users;
@@ -46,7 +46,7 @@ namespace Livraria.API.Controllers
         public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
         {
             var users = await _repo.GetAllUsersAsync(pageParams);
-            var usersResult = _mapper.Map<IEnumerable<UserDto>>(users);
+            var usersResult = _mapper.Map<IEnumerable<UserResponseDto>>(users);
 
             Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
 
@@ -62,9 +62,9 @@ namespace Livraria.API.Controllers
         public IActionResult GetById(int id)
         {
             var user = _repo.GetUserById(id);
-            if (user == null) return BadRequest("User not found :(");
+            if (user == null) return BadRequest("User not found.");
 
-            var userDto = _mapper.Map<UserDto>(user);
+            var userDto = _mapper.Map<UserResponseDto>(user);
             return Ok(userDto);
         }
 
@@ -74,13 +74,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(User model)
+        public IActionResult Post(UserRequestDto model)
         {
-            var result = _userService.UserCreate(model);
+            var result = _userService.UserCreate(_mapper.Map<User>(model));
 
             if (result != null)
             {
-                return Created($"/api/v1/user/{result.Id}", _mapper.Map<UserDto>(result));
+                return Created($"/api/v1/user/{result.Id}", _mapper.Map<UserResponseDto>(result));
             }
 
             return BadRequest("Unable to register user.");
@@ -93,13 +93,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult Put(int id, User model)
+        public IActionResult Put(int id, UserRequestDto model)
         {
-            var result = _userService.UserUpdate(id, model);
+            var result = _userService.UserUpdate(id, _mapper.Map<User>(model));
 
             if (result != null)
             {
-                return Created($"/api/user/{model.Id}", _mapper.Map<UserDto>(result));
+                return Created($"/api/user/{result.Id}", _mapper.Map<UserResponseDto>(result));
             }
 
             return BadRequest("Could not update user.");
@@ -117,10 +117,10 @@ namespace Livraria.API.Controllers
 
             if (result != null)
             {
-                return Ok("User deleted :)");
+                return Ok("User deleted.");
             }
   
-            return BadRequest("Could not delete user :(");
+            return BadRequest("Could not delete user.");
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Livraria.API.Data;
-using Livraria.API.Dtos;
+using Livraria.API.Dtos.Publishers;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
 using Livraria.API.Services.Publishers;
@@ -45,7 +45,7 @@ namespace Livraria.API.Controllers
         public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
         {
             var publishers = await _repo.GetAllPublishersAsync(pageParams);
-            var publishersResult = _mapper.Map<IEnumerable<PublisherDto>>(publishers);
+            var publishersResult = _mapper.Map<IEnumerable<PublisherResponseDto>>(publishers);
 
             Response.AddPagination(publishers.CurrentPage, publishers.PageSize, publishers.TotalCount, publishers.TotalPages);
 
@@ -61,9 +61,9 @@ namespace Livraria.API.Controllers
         public IActionResult GetById(int id)
         {
             var publisher = _repo.GetPublisherById(id);
-            if (publisher == null) return BadRequest("Book not found :(");
+            if (publisher == null) return BadRequest("Book not found.");
 
-            var publisherDto = _mapper.Map<PublisherDto>(publisher);
+            var publisherDto = _mapper.Map<PublisherResponseDto>(publisher);
             return Ok(publisherDto);
         }
 
@@ -73,13 +73,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(Publisher model)
+        public IActionResult Post(PublisherRequestDto model)
         {
-            var result = _publisherService.PublisherCreate(model);
+            var result = _publisherService.PublisherCreate(_mapper.Map<Publisher>(model));
 
             if (result != null)
             {
-                return Created($"/api/v1/publisher/{result.Id}", _mapper.Map<PublisherDto>(result));
+                return Created($"/api/v1/publisher/{result.Id}", _mapper.Map<PublisherResponseDto>(result));
             }
 
             return BadRequest("Unable to register publisher.");
@@ -92,13 +92,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Publisher model)
+        public IActionResult Put(int id, PublisherRequestDto model)
         {
-            var result = _publisherService.PublisherUpdate(id, model);
+            var result = _publisherService.PublisherUpdate(id, _mapper.Map<Publisher>(model));
 
             if (result != null)
             {
-                return Created($"/api/publisher/{model.Id}", _mapper.Map<PublisherDto>(result));
+                return Created($"/api/publisher/{model.Id}", _mapper.Map<PublisherResponseDto>(result));
             }
 
             return BadRequest("Unable to update publisher.");

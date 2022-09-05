@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Livraria.API.Models;
+using Livraria.API.Dtos.Rentals;
 
 namespace Livraria.API.Validator
 {
-    public class RentalValidator : AbstractValidator<Rental>
+    public class RentalValidator : AbstractValidator<RentalRequestDto>
     {
         public RentalValidator()
         {

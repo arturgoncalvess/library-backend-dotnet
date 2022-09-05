@@ -30,14 +30,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.BookController.Post(Livraria.API.Models.Book)">
+        <member name="M:Livraria.API.Controllers.BookController.Post(Livraria.API.Dtos.Books.BookRequestDto)">
             <summary>
             Método responsável em adicionar um novo livro
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.BookController.Put(System.Int32,Livraria.API.Models.Book)">
+        <member name="M:Livraria.API.Controllers.BookController.Put(System.Int32,Livraria.API.Dtos.Books.BookRequestDto)">
             <summary>
             Método responsável em atualizar um livro por meio do ID
             </summary>
@@ -78,14 +78,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.PublisherController.Post(Livraria.API.Models.Publisher)">
+        <member name="M:Livraria.API.Controllers.PublisherController.Post(Livraria.API.Dtos.Publishers.PublisherRequestDto)">
             <summary>
             Método responsável em adicionar uma nova editora
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.PublisherController.Put(System.Int32,Livraria.API.Models.Publisher)">
+        <member name="M:Livraria.API.Controllers.PublisherController.Put(System.Int32,Livraria.API.Dtos.Publishers.PublisherRequestDto)">
             <summary>
             Método responsável em atualizar uma editora por meio do ID
             </summary>
@@ -126,14 +126,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.RentalController.Post(Livraria.API.Models.Rental)">
+        <member name="M:Livraria.API.Controllers.RentalController.Post(Livraria.API.Dtos.Rentals.RentalRequestDto)">
             <summary>
             Método responsável em adicionar um novo aluguel
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.RentalController.Put(System.Int32,Livraria.API.Models.Rental)">
+        <member name="M:Livraria.API.Controllers.RentalController.Put(System.Int32,Livraria.API.Dtos.Rentals.RentalDevolutionDto)">
             <summary>
             Método responsável em atualizar um aluguel por meio do ID
             </summary>
@@ -175,14 +175,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.UserController.Post(Livraria.API.Models.User)">
+        <member name="M:Livraria.API.Controllers.UserController.Post(Livraria.API.Dtos.Users.UserRequestDto)">
             <summary>
             Método responsável em adicionar um novo usuário
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Livraria.API.Controllers.UserController.Put(System.Int32,Livraria.API.Models.User)">
+        <member name="M:Livraria.API.Controllers.UserController.Put(System.Int32,Livraria.API.Dtos.Users.UserRequestDto)">
             <summary>
             Método responsável em atualizar um usuário por meio do ID
             </summary>

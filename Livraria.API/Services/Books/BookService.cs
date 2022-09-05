@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Livraria.API.Data;
 using Livraria.API.Models;
+using System;
 
 namespace Livraria.API.Services.Books
 {
@@ -15,6 +16,17 @@ namespace Livraria.API.Services.Books
         }
         public Book BookCreate(Book model)
         {
+            DateTime currentDate = DateTime.Now;
+            if (model.Launch.Date >  currentDate.Date)
+            {
+                return null;
+            }
+
+            if (model.Quantity < 1)
+            {
+                return null;
+            }
+
             _repo.Add<Book>(model);
             if (_repo.SaveChanges())
             {
@@ -34,7 +46,13 @@ namespace Livraria.API.Services.Books
                 return null;
             }
 
+            model.Id = book.Id;
             if (bookId != model.Id)
+            {
+                return null;
+            }
+
+            if (model.Quantity < 1)
             {
                 return null;
             }

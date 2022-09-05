@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Livraria.API.Models;
+using Livraria.API.Dtos.Users;
 
 namespace Livraria.API.Validator
 {
-    public class UserValidator : AbstractValidator<User>
+    public class UserValidator : AbstractValidator<UserRequestDto>
     {
         public UserValidator()
         {

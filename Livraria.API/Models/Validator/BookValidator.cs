@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Livraria.API.Models;
+using Livraria.API.Dtos.Books;
 
 namespace Livraria.API.Validator
 {
-    public class BookValidator : AbstractValidator<Book>
+    public class BookValidator : AbstractValidator<BookRequestDto>
     {
         public BookValidator()
         {
@@ -25,9 +25,9 @@ namespace Livraria.API.Validator
 
             RuleFor(b => b.PublisherId)
                 .NotNull()
-                .WithMessage("Null Publisher Id")
+                .WithMessage("Null Publisher Id.")
                 .GreaterThan(0)
-                .WithMessage("Minimum 1.");
+                .WithMessage("It has to be an existing Book Id.");
 
 
             RuleFor(b => b.Quantity)

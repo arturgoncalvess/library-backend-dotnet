@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Livraria.API.Data;
-using Livraria.API.Dtos;
+using Livraria.API.Dtos.Rentals;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
 using Livraria.API.Services.Rentals;
@@ -45,7 +45,7 @@ namespace Livraria.API.Controllers
         public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
         {
             var rentals = await _repo.GetAllRentalsAsync(pageParams);
-            var rentalsResult = _mapper.Map<IEnumerable<RentalDto>>(rentals);
+            var rentalsResult = _mapper.Map<IEnumerable<RentalResponseDto>>(rentals);
 
             Response.AddPagination(rentals.CurrentPage, rentals.PageSize, rentals.TotalCount, rentals.TotalPages);
 
@@ -64,7 +64,7 @@ namespace Livraria.API.Controllers
             var rental = _repo.GetRentalById(id);
             if (rental == null) return BadRequest("Rental not found.");
 
-            var rentalDto = _mapper.Map<RentalDto>(rental);
+            var rentalDto = _mapper.Map<RentalResponseDto>(rental);
             return Ok(rentalDto);
         }
 
@@ -74,13 +74,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(Rental model)
+        public IActionResult Post(RentalRequestDto model)
         {
-            var result = _rentalService.RentalCreate(model);
+            var result = _rentalService.RentalCreate(_mapper.Map<Rental>(model));
 
             if (result != null)
             {
-                return Created($"/api/v1/rental/{model.Id}", _mapper.Map<RentalDto>(model));
+                return Created($"/api/v1/rental/{result.Id}", _mapper.Map<RentalResponseDto>(result));
             }
 
             return BadRequest("Unable to register rental.");
@@ -93,13 +93,13 @@ namespace Livraria.API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Rental model)
+        public IActionResult Put(int id, RentalDevolutionDto model)
         {
-            var result = _rentalService.RentalUpdate(id, model);
+            var result = _rentalService.RentalUpdate(id, _mapper.Map<Rental>(model));
 
             if (result != null)
             {
-                return Created($"/api/v1/rental/{model.Id}", _mapper.Map<RentalDto>(result));
+                return Created($"/api/v1/rental/{result.Id}", _mapper.Map<RentalResponseDto>(result));
             }
 
             return BadRequest("Unable to update rental.");

@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Livraria.API.Models;
+using Livraria.API.Dtos.Publishers;
 
 namespace Livraria.API.Validator
 {
-    public class PublisherValidator : AbstractValidator<Publisher>
+    public class PublisherValidator : AbstractValidator<PublisherRequestDto>
     {
         public PublisherValidator()
         {
