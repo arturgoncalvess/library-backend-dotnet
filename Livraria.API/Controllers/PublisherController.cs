@@ -98,7 +98,7 @@ namespace Livraria.API.Controllers
 
             if (result != null)
             {
-                return Created($"/api/publisher/{model.Id}", _mapper.Map<PublisherResponseDto>(result));
+                return Created($"/api/publisher/{result.Id}", _mapper.Map<PublisherResponseDto>(result));
             }
 
             return BadRequest("Unable to update publisher.");
