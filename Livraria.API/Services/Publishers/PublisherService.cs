@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Livraria.API.Data;
-using Livraria.API.Dtos;
 using Livraria.API.Models;
 
 namespace Livraria.API.Services.Publishers
@@ -16,6 +15,12 @@ namespace Livraria.API.Services.Publishers
         }
         public Publisher PublisherCreate(Publisher model)
         {
+            var checkName = _repo.GetPublisherByName(model.Name);
+            if (checkName != null)
+            {
+                return null;
+            }
+
             _repo.Add<Publisher>(model);
             if (_repo.SaveChanges())
             {
@@ -35,7 +40,15 @@ namespace Livraria.API.Services.Publishers
                 return null;
             }
 
+            model.Id = publisherId;
             if (publisherId != model.Id)
+            {
+                return null;
+            }
+
+
+            var checkName = _repo.GetPublisherByName(model.Name);
+            if (checkName != null && checkName.Id != publisherId)
             {
                 return null;
             }

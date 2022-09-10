@@ -29,6 +29,7 @@ namespace Livraria.API.Data
         // Editoras
         Publisher[] GetAllPublishers();
         Task<PageList<Publisher>> GetAllPublishersAsync(PageParams pageParams);
+        Publisher GetPublisherByName(string name);
         Publisher GetPublisherById(int publisherId);
 
         // Alugueis

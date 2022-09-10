@@ -203,6 +203,17 @@ namespace Livraria.API.Data
             return await PageList<Publisher>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
+        public Publisher GetPublisherByName(string name)
+        {
+            IQueryable<Publisher> query = _context.Publishers;
+
+            query = query.AsNoTracking()
+                .OrderBy(p => p.Name)
+                .Where(publisher => publisher.Name == name);
+
+            return query.FirstOrDefault();
+        }
+
         public Publisher GetPublisherById(int publisherId)
         {
             IQueryable<Publisher> query = _context.Publishers;
