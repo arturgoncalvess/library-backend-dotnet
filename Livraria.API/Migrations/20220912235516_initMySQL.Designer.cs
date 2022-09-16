@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Livraria.API.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20220904213323_initMySQL")]
+    [Migration("20220912235516_initMySQL")]
     partial class initMySQL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,7 +170,7 @@ namespace Livraria.API.Migrations
                     b.Property<DateTime>("Rental_Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("Return_date")
+                    b.Property<DateTime>("Return_Date")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool?>("Returned_Book")
@@ -194,7 +194,7 @@ namespace Livraria.API.Migrations
                             BookId = 1,
                             Forecast_Date = new DateTime(2022, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Rental_Date = new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2022, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_Date = new DateTime(2022, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Returned_Book = false,
                             UserId = 2
                         },
@@ -204,7 +204,7 @@ namespace Livraria.API.Migrations
                             BookId = 2,
                             Forecast_Date = new DateTime(2022, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Rental_Date = new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2022, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_Date = new DateTime(2022, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Returned_Book = false,
                             UserId = 1
                         },
@@ -214,7 +214,7 @@ namespace Livraria.API.Migrations
                             BookId = 5,
                             Forecast_Date = new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Rental_Date = new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_Date = new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Returned_Book = false,
                             UserId = 4
                         },
@@ -224,7 +224,7 @@ namespace Livraria.API.Migrations
                             BookId = 3,
                             Forecast_Date = new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Rental_Date = new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2022, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_Date = new DateTime(2022, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Returned_Book = false,
                             UserId = 1
                         },
@@ -234,7 +234,7 @@ namespace Livraria.API.Migrations
                             BookId = 1,
                             Forecast_Date = new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Rental_Date = new DateTime(2022, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_Date = new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Returned_Book = false,
                             UserId = 3
                         },
@@ -244,7 +244,7 @@ namespace Livraria.API.Migrations
                             BookId = 2,
                             Forecast_Date = new DateTime(2022, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Rental_Date = new DateTime(2022, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2022, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_Date = new DateTime(2022, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Returned_Book = false,
                             UserId = 3
                         },
@@ -254,7 +254,7 @@ namespace Livraria.API.Migrations
                             BookId = 4,
                             Forecast_Date = new DateTime(2022, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Rental_Date = new DateTime(2022, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_date = new DateTime(2022, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_Date = new DateTime(2022, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Returned_Book = false,
                             UserId = 4
                         });

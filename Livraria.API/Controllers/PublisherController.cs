@@ -4,6 +4,7 @@ using Livraria.API.Dtos.Publishers;
 using Livraria.API.Helpers;
 using Livraria.API.Models;
 using Livraria.API.Services.Publishers;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace Livraria.API.Controllers
     /// <summary>
     /// ApiController
     /// </summary>
+    [EnableCors("mypolicy")]
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[Controller]")]

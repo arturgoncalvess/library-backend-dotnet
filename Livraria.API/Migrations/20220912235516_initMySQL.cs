@@ -72,7 +72,7 @@ namespace Livraria.API.Migrations
                     BookId = table.Column<int>(nullable: false),
                     Rental_Date = table.Column<DateTime>(nullable: false),
                     Forecast_Date = table.Column<DateTime>(nullable: false),
-                    Return_date = table.Column<DateTime>(nullable: false),
+                    Return_Date = table.Column<DateTime>(nullable: false),
                     Returned_Book = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
@@ -129,7 +129,7 @@ namespace Livraria.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Rentals",
-                columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_date", "Returned_Book", "UserId" },
+                columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_Date", "Returned_Book", "UserId" },
                 values: new object[,]
                 {
                     { 2, 2, new DateTime(2022, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), false, 1 },

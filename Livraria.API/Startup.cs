@@ -16,6 +16,7 @@ using Livraria.API.Services.Books;
 using Livraria.API.Services.Publishers;
 using Livraria.API.Services.Rentals;
 using Livraria.API.Validator;
+using Microsoft.CodeAnalysis.Options;
 
 namespace Livraria.API
 {
@@ -43,6 +44,15 @@ namespace Livraria.API
                     .AddNewtonsoftJson(
                         opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     );
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder => builder.WithOrigins("http://localhost:8080"));
+                options.AddPolicy("mypolicy", builder =>
+                    builder.WithOrigins("http://localhost:8080"));
+            });
+
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -117,6 +127,8 @@ namespace Livraria.API
 
                     options.RoutePrefix = "";
                 });
+
+            app.UseCors();
 
             app.UseAuthorization();
 
