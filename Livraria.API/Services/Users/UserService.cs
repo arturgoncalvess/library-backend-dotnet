@@ -73,7 +73,10 @@ namespace Livraria.API.Services.Users
             var checkRental = _repo.GetAllRentalsByUserId(userId);
             if (checkRental != null)
             {
-                return null;
+                if (checkRental.Returned_Book != true)
+                {
+                    return null;   
+                }
             }
 
             _repo.Delete(user);

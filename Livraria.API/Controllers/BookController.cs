@@ -16,7 +16,6 @@ namespace Livraria.API.Controllers
     /// <summary>
     /// ApiController
     /// </summary>
-    [EnableCors("mypolicy")]
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[Controller]")]

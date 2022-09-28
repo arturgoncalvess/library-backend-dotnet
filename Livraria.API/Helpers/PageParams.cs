@@ -7,7 +7,7 @@ namespace Livraria.API.Helpers
 
         public const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;
-        private int pageSize = 10;
+        private int pageSize = 999999999;
 
         public int PageSize
         {

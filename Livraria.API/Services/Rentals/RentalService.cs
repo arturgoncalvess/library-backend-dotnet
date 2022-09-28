@@ -24,7 +24,7 @@ namespace Livraria.API.Services.Rentals
             }
 
             var updateBook = _repo.GetBookById(model.BookId);
-            if (updateBook.Quantity > 1)
+            if (updateBook.Quantity < 1)
             {
                 return null;
             }
@@ -32,10 +32,11 @@ namespace Livraria.API.Services.Rentals
             {
                 updateBook.Quantity--;
                 updateBook.TotalRented++;
+                updateBook.MaxRented++;
             }
 
             DateTime currentDate = DateTime.Now;
-            if (model.Rental_Date.Date < currentDate.Date)
+            if (model.Rental_Date.Date > currentDate.Date)
             {
                 return null;
             }

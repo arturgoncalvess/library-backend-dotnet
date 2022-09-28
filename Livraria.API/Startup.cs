@@ -45,12 +45,10 @@ namespace Livraria.API
                         opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     );
 
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder => builder.WithOrigins("http://localhost:8080"));
-                options.AddPolicy("mypolicy", builder =>
-                    builder.WithOrigins("http://localhost:8080"));
+            services.AddCors(options => {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:8080/",
+                "http://10.0.0.236:8080/"));
             });
 
 
@@ -128,7 +126,11 @@ namespace Livraria.API
                     options.RoutePrefix = "";
                 });
 
-            app.UseCors();
+            app.UseCors(
+                x => x.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader()
+            );
 
             app.UseAuthorization();
 

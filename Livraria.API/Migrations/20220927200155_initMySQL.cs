@@ -49,7 +49,8 @@ namespace Livraria.API.Migrations
                     PublisherId = table.Column<int>(nullable: false),
                     Launch = table.Column<DateTime>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
-                    TotalRented = table.Column<int>(nullable: false)
+                    TotalRented = table.Column<int>(nullable: false),
+                    MaxRented = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,51 +96,22 @@ namespace Livraria.API.Migrations
             migrationBuilder.InsertData(
                 table: "Publishers",
                 columns: new[] { "Id", "City", "Name" },
-                values: new object[,]
-                {
-                    { 1, "São Paulo", "Makron" },
-                    { 2, "Rio de Janeiro", "Campus" },
-                    { 3, "São Paulo", "Pearson" },
-                    { 4, "São Paulo", "Bookman" }
-                });
+                values: new object[] { 1, "São Paulo", "Makron" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "City", "Email", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Rua A,190", "Fortaleza", "joão@bol", "João Lopes" },
-                    { 2, "Av. B, 1200", "Caucaia", "ms@gmail", "Marcelo Silva" },
-                    { 3, "Rua C, 87", "São Paulo", "aguiar@ig", "Carlos Aguiar" },
-                    { 4, "Rua D, 120", "Fortaleza", "rporto@bol", "Roberto Porto" }
-                });
+                values: new object[] { 1, "Rua A,190", "Fortaleza", "joão@bol", "João Lopes" });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "Launch", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[,]
-                {
-                    { 2, "Deitel", new DateTime(2005, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Redes de Computadores", 1, 99, 1 },
-                    { 5, "Cormen", new DateTime(2005, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Algoritmos", 1, 99, 1 },
-                    { 1, "Navathe", new DateTime(2002, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Banco de Dados", 2, 98, 2 },
-                    { 4, "Cormen", new DateTime(2006, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sistemas Operacionais", 2, 99, 1 },
-                    { 6, "Deitel", new DateTime(2006, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Programando em C++", 2, 100, 0 },
-                    { 3, "Deitel", new DateTime(2004, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Java Prático", 3, 99, 1 }
-                });
+                columns: new[] { "Id", "Author", "Launch", "MaxRented", "Name", "PublisherId", "Quantity", "TotalRented" },
+                values: new object[] { 1, "Navathe", new DateTime(2002, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Banco de Dados", 1, 49, 1 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_Date", "Returned_Book", "UserId" },
-                values: new object[,]
-                {
-                    { 2, 2, new DateTime(2022, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), false, 1 },
-                    { 6, 2, new DateTime(2022, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, 3 },
-                    { 3, 5, new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), false, 4 },
-                    { 1, 1, new DateTime(2022, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), false, 2 },
-                    { 5, 1, new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, 3 },
-                    { 7, 4, new DateTime(2022, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), false, 4 },
-                    { 4, 3, new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), false, 1 }
-                });
+                values: new object[] { 1, 1, new DateTime(2022, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 2 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_PublisherId",

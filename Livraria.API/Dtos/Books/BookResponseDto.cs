@@ -13,5 +13,6 @@ namespace Livraria.API.Dtos.Books
         public DateTime Launch { get; set; }
         public int Quantity { get; set; }
         public int TotalRented { get; set; }
+        public int MaxRented { get; set; }
     }
 }

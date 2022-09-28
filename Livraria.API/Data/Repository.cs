@@ -154,7 +154,7 @@ namespace Livraria.API.Data
 
             query = query.AsNoTracking()
                 .OrderBy(b => b.Id)
-                .Where(publisher => publisher.Id == publisherId);
+                .Where(book => book.PublisherId == publisherId);
 
             return query.FirstOrDefault();
         }
@@ -167,7 +167,7 @@ namespace Livraria.API.Data
 
             query = query.AsNoTracking()
                 .OrderBy(b => b.Id)
-                .Where(publisher => publisher.Id == bookId);
+                .Where(book => book.Id == bookId);
 
             return query.FirstOrDefault();
         }
@@ -274,7 +274,7 @@ namespace Livraria.API.Data
 
             query = query.AsNoTracking()
                 .OrderBy(r => r.UserId)
-                .Where(user => user.UserId == userId);
+                .Where(rental => rental.UserId == userId);
 
             return query.FirstOrDefault();
         }
@@ -287,7 +287,7 @@ namespace Livraria.API.Data
 
             query = query.AsNoTracking()
                 .OrderBy(r => r.BookId)
-                .Where(book => book.BookId == bookId);
+                .Where(rental => rental.BookId == bookId);
 
             return query.FirstOrDefault();
         }
@@ -302,8 +302,7 @@ namespace Livraria.API.Data
 
             query = query.AsNoTracking()
                 .OrderBy(a => a.Id)
-                .Where(user => user.Id == rentalId)
-                .Where(book => book.Id == rentalId);
+                .Where(rental => rental.Id == rentalId);
 
             return query.FirstOrDefault();
         }

@@ -52,6 +52,12 @@ namespace Livraria.API.Services.Books
                 return null;
             }
 
+            model.TotalRented = book.TotalRented;
+            if (model.TotalRented != book.TotalRented)
+            {
+                return null;
+            }
+
             if (model.Quantity < 1)
             {
                 return null;
