@@ -159,6 +159,17 @@ namespace Livraria.API.Data
             return query.FirstOrDefault();
         }
 
+        public Book[] GetBooksByMaxRented()
+        {
+            IQueryable<Book> query = _context.Books;
+
+            query = query.Include(b => b.Publisher);
+
+            query = query.AsNoTracking().OrderByDescending(b => b.MaxRented);
+
+            return query.ToArray();
+        }
+
         public Book GetBookById(int bookId)
         {
             IQueryable<Book> query = _context.Books;

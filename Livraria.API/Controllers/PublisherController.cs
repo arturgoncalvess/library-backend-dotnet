@@ -62,7 +62,7 @@ namespace Livraria.API.Controllers
         public IActionResult GetById(int id)
         {
             var publisher = _repo.GetPublisherById(id);
-            if (publisher == null) return BadRequest("Book not found.");
+            if (publisher == null) return BadRequest("Publisher not found.");
 
             var publisherDto = _mapper.Map<PublisherResponseDto>(publisher);
             return Ok(publisherDto);

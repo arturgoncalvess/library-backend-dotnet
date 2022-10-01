@@ -68,6 +68,15 @@ namespace Livraria.API.Controllers
             return Ok(bookDto);
         }
 
+        [HttpGet("ByMaxRented")]
+        public IActionResult GetByMaxRented()
+        {
+            var book = _repo.GetBooksByMaxRented();
+            if (book == null) return BadRequest("Book not found.");
+
+            return Ok(book);
+        }
+
         /// <summary>
         /// Método responsável em adicionar um novo livro
         /// </summary>

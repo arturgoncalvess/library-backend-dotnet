@@ -24,6 +24,7 @@ namespace Livraria.API.Data
         Book[] GetAllBooks();
         Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams);
         Book GetAllBooksByPublisherId(int publisherId);
+        Book[] GetBooksByMaxRented();
         Book GetBookById(int bookId);
 
         // Editoras
