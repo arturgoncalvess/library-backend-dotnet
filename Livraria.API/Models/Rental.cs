@@ -5,7 +5,7 @@ namespace Livraria.API.Models
     public class Rental
     {
         public Rental() { }
-        public Rental(int id, int user_id, int book_id, DateTime rental_date, DateTime forecast_date, DateTime return_date, bool returned_book)
+        public Rental(int id, int user_id, int book_id, DateTime rental_date, DateTime forecast_date, DateTime return_date, bool returned_book, string status_Rental)
         {
             this.Id = id;
             this.UserId = user_id;
@@ -14,6 +14,7 @@ namespace Livraria.API.Models
             this.Forecast_Date = forecast_date;
             this.Return_Date = return_date;
             this.Returned_Book = returned_book;
+            this.Status_Rental = status_Rental;
         }
         public int Id { get; set; }
         public int UserId { get; set; }
@@ -24,5 +25,6 @@ namespace Livraria.API.Models
         public DateTime Forecast_Date { get; set; }
         public DateTime Return_Date { get; set; }
         public bool? Returned_Book { get; set; }
+        public string? Status_Rental { get; set; }
     }
 }

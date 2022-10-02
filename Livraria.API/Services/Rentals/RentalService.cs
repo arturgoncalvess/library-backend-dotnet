@@ -46,6 +46,15 @@ namespace Livraria.API.Services.Rentals
                 return null;
             }
 
+            if (string.IsNullOrEmpty(model.Status_Rental))
+            {
+                model.Status_Rental = "Com pendência";
+            } 
+            else
+            {
+                return null;
+            }
+
             _repo.Update<Book>(updateBook);
             if (_repo.SaveChanges())
             {
@@ -73,6 +82,7 @@ namespace Livraria.API.Services.Rentals
             model.BookId = rental.BookId;
             model.Rental_Date = rental.Rental_Date;
             model.Forecast_Date = rental.Forecast_Date;
+            model.Status_Rental = rental.Status_Rental;
 
             if (model.Id != rentalId)
             {
@@ -90,6 +100,7 @@ namespace Livraria.API.Services.Rentals
                 updateBook.Quantity++;
             }
 
+
             if (model.Return_Date.Date < model.Rental_Date.Date)
             {
                 return null;
@@ -100,6 +111,18 @@ namespace Livraria.API.Services.Rentals
                 return null;
             }
 
+            if (model.Return_Date.Date > model.Forecast_Date.Date)
+            {
+                model.Status_Rental = "Com atraso";
+            }
+            else if (model.Return_Date.Date <= model.Forecast_Date.Date)
+            {
+                model.Status_Rental = "No prazo";
+            }
+            else
+            {
+                return null;
+            }
 
             _repo.Update<Book>(updateBook);
             if (_repo.SaveChanges())

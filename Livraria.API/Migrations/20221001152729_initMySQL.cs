@@ -74,7 +74,8 @@ namespace Livraria.API.Migrations
                     Rental_Date = table.Column<DateTime>(nullable: false),
                     Forecast_Date = table.Column<DateTime>(nullable: false),
                     Return_Date = table.Column<DateTime>(nullable: false),
-                    Returned_Book = table.Column<bool>(nullable: true)
+                    Returned_Book = table.Column<bool>(nullable: true),
+                    Status_Rental = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,17 +102,17 @@ namespace Livraria.API.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "City", "Email", "Name" },
-                values: new object[] { 1, "Rua A,190", "Fortaleza", "joão@bol", "João Lopes" });
+                values: new object[] { 1, "Rua A,190", "Fortaleza", "artur@gmail.com", "Artur Gonçalves" });
 
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "Author", "Launch", "MaxRented", "Name", "PublisherId", "Quantity", "TotalRented" },
-                values: new object[] { 1, "Navathe", new DateTime(2002, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Banco de Dados", 1, 49, 1 });
+                values: new object[] { 1, "Navathe", new DateTime(2012, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "VueJs com DotNet", 1, 49, 1 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
-                columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_Date", "Returned_Book", "UserId" },
-                values: new object[] { 1, 1, new DateTime(2022, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 2 });
+                columns: new[] { "Id", "BookId", "Forecast_Date", "Rental_Date", "Return_Date", "Returned_Book", "Status_Rental", "UserId" },
+                values: new object[] { 1, 1, new DateTime(2022, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Com pendência", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_PublisherId",

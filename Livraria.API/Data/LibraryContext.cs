@@ -17,12 +17,12 @@ namespace Livraria.API.Data
         {
             builder.Entity<User>()
                 .HasData(new List<User>(){
-                    new User(1, "João Lopes", "Fortaleza", "Rua A,190", "joão@bol"),
+                    new User(1, "Artur Gonçalves", "Fortaleza", "Rua A,190", "artur@gmail.com"),
                 });
 
             builder.Entity<Book>()
                 .HasData(new List<Book>(){
-                    new Book(1, "Banco de Dados", "Navathe", 1, DateTime.Parse("14/10/2002"), 49, 1, 1),
+                    new Book(1, "VueJs com DotNet", "Navathe", 1, DateTime.Parse("14/10/2012"), 49, 1, 1),
                 });
 
             builder.Entity<Publisher>()
@@ -32,7 +32,7 @@ namespace Livraria.API.Data
 
             builder.Entity<Rental>()
                 .HasData(new List<Rental>(){
-                    new Rental(1, 2, 1, DateTime.Parse("14/09/2022"), DateTime.Parse("30/10/2022"), DateTime.Parse("25/09/2022"), true),
+                    new Rental(1, 1, 1, DateTime.Parse("20/06/2022"), DateTime.Parse("03/10/2022"), DateTime.Parse("01/01/0001"), false, "Com pendência"),
                 });
         }
     }

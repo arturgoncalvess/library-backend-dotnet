@@ -55,9 +55,9 @@ namespace Livraria.API.Migrations
                         {
                             Id = 1,
                             Author = "Navathe",
-                            Launch = new DateTime(2002, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Launch = new DateTime(2012, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MaxRented = 1,
-                            Name = "Banco de Dados",
+                            Name = "VueJs com DotNet",
                             PublisherId = 1,
                             Quantity = 49,
                             TotalRented = 1
@@ -110,6 +110,9 @@ namespace Livraria.API.Migrations
                     b.Property<bool?>("Returned_Book")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("Status_Rental")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -126,11 +129,12 @@ namespace Livraria.API.Migrations
                         {
                             Id = 1,
                             BookId = 1,
-                            Forecast_Date = new DateTime(2022, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Rental_Date = new DateTime(2022, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Return_Date = new DateTime(2022, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Returned_Book = true,
-                            UserId = 2
+                            Forecast_Date = new DateTime(2022, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rental_Date = new DateTime(2022, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Return_Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Returned_Book = false,
+                            Status_Rental = "Com pendência",
+                            UserId = 1
                         });
                 });
 
@@ -162,8 +166,8 @@ namespace Livraria.API.Migrations
                             Id = 1,
                             Address = "Rua A,190",
                             City = "Fortaleza",
-                            Email = "joão@bol",
-                            Name = "João Lopes"
+                            Email = "artur@gmail.com",
+                            Name = "Artur Gonçalves"
                         });
                 });
 

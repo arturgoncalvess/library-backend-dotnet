@@ -15,5 +15,6 @@ namespace Livraria.API.Dtos.Rentals
         public DateTime Forecast_Date { get; set; }
         public DateTime? Return_Date { get; set; }
         public bool Returned_Book { get; set; }
+        public string Status_Rental { get; set; }
     }
 }
