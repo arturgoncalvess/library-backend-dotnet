@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Livraria.API.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20221001152729_initMySQL")]
+    [Migration("20221003175345_initMySQL")]
     partial class initMySQL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

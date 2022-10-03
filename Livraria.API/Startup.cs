@@ -48,7 +48,7 @@ namespace Livraria.API
             services.AddCors(options => {
                 options.AddPolicy("AllowSpecificOrigin",
                     builder => builder.WithOrigins("http://localhost:8080/",
-                "http://10.0.0.236:8080/"));
+                "http://10.0.0.236:8080/", "http://testfront.local.lt/"));
             });
 
 
