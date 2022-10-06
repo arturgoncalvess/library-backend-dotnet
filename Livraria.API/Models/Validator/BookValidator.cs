@@ -33,8 +33,8 @@ namespace Livraria.API.Validator
             RuleFor(b => b.Quantity)
                 .NotNull()
                 .WithMessage("Null quantity.")
-                .GreaterThan(0)
-                .WithMessage("Minimum 1.");
+                .GreaterThan(-1)
+                .WithMessage("Minimum 0.");
 
             RuleFor(b => b.Launch)
                 .NotEmpty()

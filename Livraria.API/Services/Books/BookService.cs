@@ -22,7 +22,7 @@ namespace Livraria.API.Services.Books
                 return null;
             }
 
-            if (model.Quantity < 1)
+            if (model.Quantity < 0)
             {
                 return null;
             }
@@ -58,7 +58,7 @@ namespace Livraria.API.Services.Books
                 return null;
             }
 
-            if (model.Quantity < 1)
+            if (model.Quantity < 0)
             {
                 return null;
             }
@@ -81,7 +81,7 @@ namespace Livraria.API.Services.Books
             }
 
             var checkRental = _repo.GetAllRentalsByBookId(bookId);
-            if (checkRental != null)
+            if (checkRental.Length != 0)
             {
                 return null;
             }

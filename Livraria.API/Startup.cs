@@ -17,6 +17,7 @@ using Livraria.API.Services.Publishers;
 using Livraria.API.Services.Rentals;
 using Livraria.API.Validator;
 using Microsoft.CodeAnalysis.Options;
+using System.ComponentModel;
 
 namespace Livraria.API
 {
@@ -47,8 +48,8 @@ namespace Livraria.API
 
             services.AddCors(options => {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://localhost:8080/",
-                "http://10.0.0.236:8080/"));
+                    builder => builder.WithOrigins("http://localhost:8080",
+                "http://10.0.0.236:8080"));
             });
 
 

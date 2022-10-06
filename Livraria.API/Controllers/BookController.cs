@@ -77,6 +77,15 @@ namespace Livraria.API.Controllers
             return Ok(book);
         }
 
+        [HttpGet("ByAvailable")]
+        public IActionResult GetByAvailable()
+        {
+            var book = _repo.GetBooksByAvailable();
+            if (book == null) return BadRequest("Book not found.");
+
+            return Ok(book);
+        }
+
         /// <summary>
         /// Método responsável em adicionar um novo livro
         /// </summary>

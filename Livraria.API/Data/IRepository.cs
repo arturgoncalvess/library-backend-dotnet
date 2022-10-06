@@ -25,6 +25,8 @@ namespace Livraria.API.Data
         Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams);
         Book GetAllBooksByPublisherId(int publisherId);
         Book[] GetBooksByMaxRented();
+        Book[] GetBooksByAvailable();
+
         Book GetBookById(int bookId);
 
         // Editoras
@@ -36,8 +38,8 @@ namespace Livraria.API.Data
         // Alugueis
         Rental[] GetAllRentals();
         Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams);
-        Rental GetAllRentalsByUserId(int userId);
-        Rental GetAllRentalsByBookId(int bookId);
+        Rental[] GetAllRentalsByUserId(int userId);
+        Rental[] GetAllRentalsByBookId(int bookId);
         Rental GetRentalById(int rentalId);
     }
 }

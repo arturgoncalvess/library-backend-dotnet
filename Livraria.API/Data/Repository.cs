@@ -170,6 +170,17 @@ namespace Livraria.API.Data
             return query.ToArray();
         }
 
+        public Book[] GetBooksByAvailable()
+        {
+            IQueryable<Book> query = _context.Books;
+
+            query = query.Include(b => b.Publisher);
+
+            query = query.AsNoTracking().OrderBy(b => b.Id).Where(book => book.Quantity >= 1);
+
+            return query.ToArray();
+        }
+
         public Book GetBookById(int bookId)
         {
             IQueryable<Book> query = _context.Books;
@@ -277,7 +288,7 @@ namespace Livraria.API.Data
             return await PageList<Rental>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
-        public Rental GetAllRentalsByUserId(int userId)
+        public Rental[] GetAllRentalsByUserId(int userId)
         {
             IQueryable<Rental> query = _context.Rentals;
 
@@ -287,10 +298,10 @@ namespace Livraria.API.Data
                 .OrderBy(r => r.UserId)
                 .Where(rental => rental.UserId == userId);
 
-            return query.FirstOrDefault();
+            return query.ToArray();
         }
 
-        public Rental GetAllRentalsByBookId(int bookId)
+        public Rental[] GetAllRentalsByBookId(int bookId)
         {
             IQueryable<Rental> query = _context.Rentals;
 
@@ -300,7 +311,7 @@ namespace Livraria.API.Data
                 .OrderBy(r => r.BookId)
                 .Where(rental => rental.BookId == bookId);
 
-            return query.FirstOrDefault();
+            return query.ToArray();
         }
 
         public Rental GetRentalById(int rentalId)
