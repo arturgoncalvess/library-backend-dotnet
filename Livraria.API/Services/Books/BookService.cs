@@ -58,6 +58,12 @@ namespace Livraria.API.Services.Books
                 return null;
             }
 
+            model.MaxRented = book.MaxRented;
+            if (model.MaxRented != book.MaxRented)
+            {
+                return null;
+            }
+
             if (model.Quantity < 0)
             {
                 return null;
